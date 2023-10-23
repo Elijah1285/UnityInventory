@@ -33,14 +33,14 @@ public class InputManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButtonDown("ToggleInv"))
-        {
-            InventorySystem.instance.toggleInventory();
+        //if (controls.ReadValu)
+        //{
+        //    InventorySystem.instance.toggleInventory();
 
-            if (prompt != null)
-            {
-                Destroy(prompt.gameObject);
-            }
-        }
+        //    if (prompt != null)
+        //    {
+        //        Destroy(prompt.gameObject);
+        //    }
+        //}
     }
 }

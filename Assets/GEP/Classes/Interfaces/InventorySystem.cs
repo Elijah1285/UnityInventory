@@ -8,6 +8,8 @@ public class InventorySystem : MonoBehaviour
     public static InventorySystem instance;
 
     bool inventory_open = false;
+    [SerializeField] int[] item_ids;
+    int next_empty_slot = 0;
 
     [SerializeField] Canvas inventory_panel;
 
@@ -35,5 +37,10 @@ public class InventorySystem : MonoBehaviour
         {
             inventory_panel.gameObject.SetActive(false);
         }
+    }
+
+    public void addItem(int item_ID)
+    {
+        item_ids[next_empty_slot] = item_ID;
     }
 }

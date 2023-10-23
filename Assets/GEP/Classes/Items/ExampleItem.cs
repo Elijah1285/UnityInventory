@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Resources;
 using UnityEngine;
 
 public class ExampleItem : MonoBehaviour, IPickupable
 {
-    // Start is called before the first frame update
+    int item_ID = 1;
+
     void Start()
     {
         
@@ -21,6 +23,7 @@ public class ExampleItem : MonoBehaviour, IPickupable
     /// </summary>
     public void Pickup()
     {
+        InventorySystem.instance.addItem(item_ID);
         Destroy(gameObject);
     }
 }
