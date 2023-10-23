@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class InputManager : MonoBehaviour
 {
     public static InputManager instance;
-    private void Awake()
+    public InputAction controls;
+
+    [SerializeField] Canvas prompt;
+    void Awake()
     {
         if (instance == null)
         {
@@ -17,11 +21,26 @@ public class InputManager : MonoBehaviour
         }
     }
 
-    private void Update()
+    void OnEnable()
+    {
+        controls.Enable();
+    }
+
+    private void OnDisable()
+    {
+        controls.Disable();
+    }
+
+    void Update()
     {
         if (Input.GetButtonDown("ToggleInv"))
         {
             InventorySystem.instance.toggleInventory();
+
+            if (prompt != null)
+            {
+                Destroy(prompt.gameObject);
+            }
         }
     }
 }
