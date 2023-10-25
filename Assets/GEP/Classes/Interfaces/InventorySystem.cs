@@ -14,6 +14,8 @@ public class InventorySystem : MonoBehaviour
 
     [SerializeField] Canvas inventory_panel;
 
+    [SerializeField] Sprite grey_block_icon;
+
     private void Awake()
     {
         if (instance == null)
@@ -57,7 +59,7 @@ public class InventorySystem : MonoBehaviour
             switch (item_ids[i])
             {
                 case 1:
-                    inventory_panel.GetComponent<RectTransform>().GetChild(i).GetComponent<Image>();
+                    inventory_panel.GetComponent<RectTransform>().GetChild(i).GetComponent<Image>().sprite = grey_block_icon;
                     break;
             }
         }
