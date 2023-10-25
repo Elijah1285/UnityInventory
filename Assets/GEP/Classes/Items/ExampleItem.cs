@@ -5,25 +5,14 @@ using UnityEngine;
 
 public class ExampleItem : MonoBehaviour, IPickupable
 {
-    int item_ID = 1;
-
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    int item_id = 1;
 
     /// <summary>
     /// This is where you will want to add your own implementation for your own systems.
     /// </summary>
     public void Pickup()
     {
-        InventorySystem.instance.addItem(item_ID);
+        InventorySystem.instance.addItem(item_id);
         Destroy(gameObject);
     }
 }

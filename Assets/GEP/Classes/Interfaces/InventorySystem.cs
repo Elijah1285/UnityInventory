@@ -39,8 +39,25 @@ public class InventorySystem : MonoBehaviour
         }
     }
 
-    public void addItem(int item_ID)
+    public void addItem(int item_id)
     {
-        item_ids[next_empty_slot] = item_ID;
+        if (next_empty_slot < item_ids.Length)
+        {
+            item_ids[next_empty_slot] = item_id;
+            next_empty_slot++;
+            updateInventory();
+        }
+    }
+
+    void updateInventory()
+    {
+        for (int i = 0; i < item_ids.Length; i++)
+        {
+            switch (item_ids[i])
+            {
+                case 1:
+                    break;
+            }
+        }
     }
 }
