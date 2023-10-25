@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Resources;
 using UnityEngine;
 
-public class ExampleItem : MonoBehaviour, IPickupable
+public class Block : MonoBehaviour, IPickupable
 {
-    int item_id = 1;
+    [SerializeField] int item_id;
 
     /// <summary>
     /// This is where you will want to add your own implementation for your own systems.

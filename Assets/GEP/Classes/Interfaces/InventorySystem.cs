@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.UI;
 
 public class InventorySystem : MonoBehaviour
 {
@@ -56,6 +57,7 @@ public class InventorySystem : MonoBehaviour
             switch (item_ids[i])
             {
                 case 1:
+                    inventory_panel.GetComponent<RectTransform>().GetChild(i).GetComponent<Image>();
                     break;
             }
         }
