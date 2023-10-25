@@ -56,6 +56,8 @@ public class InventorySystem : MonoBehaviour
     {
         for (int i = 0; i < item_ids.Length; i++)
         {
+            Debug.Log(item_ids[i]);
+
             switch (item_ids[i])
             {
                 case 1:
