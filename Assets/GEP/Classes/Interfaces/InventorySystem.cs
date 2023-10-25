@@ -64,6 +64,10 @@ public class InventorySystem : MonoBehaviour
                     inventory_panel.GetComponent<RectTransform>().GetChild(i).GetComponent<Image>().sprite = grey_block_icon;
                     inventory_panel.GetComponent<RectTransform>().GetChild(i).GetComponent<Image>().color = Color.white;
                     break;
+                default:
+                    inventory_panel.GetComponent<RectTransform>().GetChild(i).GetComponent<Image>().sprite = null;
+                    inventory_panel.GetComponent<RectTransform>().GetChild(i).GetComponent<Image>().color = new Color(255,255,255,50);
+                    break;
             }
         }
     }
