@@ -763,7 +763,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item_ids: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   inventory_panel: {fileID: 1479499809}
-  grey_block_icon: {fileID: 21300000, guid: a80ff657225d70b4d88f08d0c3e8de86, type: 3}
+  grass_icon: {fileID: 21300000, guid: c4fa81419c9a8af4fad8a282f8c69a76, type: 3}
+  dirt_icon: {fileID: 21300000, guid: d1546f232d8c90f4cbbd2a21afcbb585, type: 3}
+  stone_icon: {fileID: 21300000, guid: 5a1a228d0dc09984787f6e5a55520f30, type: 3}
+  diamond_icon: {fileID: 21300000, guid: 59881276c4cc9384eb47126b0a5b7857, type: 3}
 --- !u!4 &354735281
 Transform:
   m_ObjectHideFlags: 0
@@ -4076,7 +4079,7 @@ PrefabInstance:
     - target: {fileID: 6546222306790618794, guid: 8a3fa11e2fa62ca419a3616b4bb98a29,
         type: 3}
       propertyPath: m_Name
-      value: grey_block
+      value: stone
       objectReference: {fileID: 0}
     - target: {fileID: 8111133015485806505, guid: 8a3fa11e2fa62ca419a3616b4bb98a29,
         type: 3}
@@ -4729,7 +4732,6 @@ SceneRoots:
   - {fileID: 2809509115119578148}
   - {fileID: 5116267576230626479}
   - {fileID: 6415725059456787555}
-  - {fileID: 2043383687546976530}
   - {fileID: 354735281}
   - {fileID: 1479499810}
   - {fileID: 1491794971}
@@ -4737,4 +4739,5 @@ SceneRoots:
   - {fileID: 43182921}
   - {fileID: 1045250825}
   - {fileID: 248982126}
+  - {fileID: 2043383687546976530}
   - {fileID: 739469156}

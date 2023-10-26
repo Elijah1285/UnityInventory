@@ -14,7 +14,10 @@ public class InventorySystem : MonoBehaviour
 
     [SerializeField] Canvas inventory_panel;
 
-    [SerializeField] Sprite grey_block_icon;
+    [SerializeField] Sprite grass_icon;
+    [SerializeField] Sprite dirt_icon;
+    [SerializeField] Sprite stone_icon;
+    [SerializeField] Sprite diamond_icon;
 
     private void Awake()
     {
@@ -61,7 +64,19 @@ public class InventorySystem : MonoBehaviour
             switch (item_ids[i])
             {
                 case 1:
-                    inventory_panel.GetComponent<RectTransform>().GetChild(i).GetComponent<Image>().sprite = grey_block_icon;
+                    inventory_panel.GetComponent<RectTransform>().GetChild(i).GetComponent<Image>().sprite = grass_icon;
+                    inventory_panel.GetComponent<RectTransform>().GetChild(i).GetComponent<Image>().color = Color.white;
+                    break;
+                case 2:
+                    inventory_panel.GetComponent<RectTransform>().GetChild(i).GetComponent<Image>().sprite = dirt_icon;
+                    inventory_panel.GetComponent<RectTransform>().GetChild(i).GetComponent<Image>().color = Color.white;
+                    break;
+                case 3:
+                    inventory_panel.GetComponent<RectTransform>().GetChild(i).GetComponent<Image>().sprite = stone_icon;
+                    inventory_panel.GetComponent<RectTransform>().GetChild(i).GetComponent<Image>().color = Color.white;
+                    break;
+                case 4:
+                    inventory_panel.GetComponent<RectTransform>().GetChild(i).GetComponent<Image>().sprite = diamond_icon;
                     inventory_panel.GetComponent<RectTransform>().GetChild(i).GetComponent<Image>().color = Color.white;
                     break;
                 default:
