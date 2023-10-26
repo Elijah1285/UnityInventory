@@ -13,6 +13,7 @@ public class InventorySystem : MonoBehaviour
     int next_empty_slot = 0;
 
     [SerializeField] Canvas inventory_panel;
+    [SerializeField] Transform inventory_slots;
 
     [SerializeField] Sprite grass_icon;
     [SerializeField] Sprite dirt_icon;
@@ -64,24 +65,24 @@ public class InventorySystem : MonoBehaviour
             switch (item_ids[i])
             {
                 case 1:
-                    inventory_panel.GetComponent<RectTransform>().GetChild(i).GetComponent<Image>().sprite = grass_icon;
-                    inventory_panel.GetComponent<RectTransform>().GetChild(i).GetComponent<Image>().color = Color.white;
+                    inventory_slots.GetChild(i).GetComponent<Image>().sprite = grass_icon;
+                    inventory_slots.GetChild(i).GetComponent<Image>().enabled = true;
                     break;
                 case 2:
-                    inventory_panel.GetComponent<RectTransform>().GetChild(i).GetComponent<Image>().sprite = dirt_icon;
-                    inventory_panel.GetComponent<RectTransform>().GetChild(i).GetComponent<Image>().color = Color.white;
+                    inventory_slots.GetChild(i).GetComponent<Image>().sprite = dirt_icon;
+                    inventory_slots.GetChild(i).GetComponent<Image>().enabled = true;
                     break;
                 case 3:
-                    inventory_panel.GetComponent<RectTransform>().GetChild(i).GetComponent<Image>().sprite = stone_icon;
-                    inventory_panel.GetComponent<RectTransform>().GetChild(i).GetComponent<Image>().color = Color.white;
+                    inventory_slots.GetChild(i).GetComponent<Image>().sprite = stone_icon;
+                    inventory_slots.GetChild(i).GetComponent<Image>().enabled = true;
                     break;
                 case 4:
-                    inventory_panel.GetComponent<RectTransform>().GetChild(i).GetComponent<Image>().sprite = diamond_icon;
-                    inventory_panel.GetComponent<RectTransform>().GetChild(i).GetComponent<Image>().color = Color.white;
+                    inventory_slots.GetChild(i).GetComponent<Image>().sprite = diamond_icon;
+                    inventory_slots.GetChild(i).GetComponent<Image>().enabled = true;
                     break;
                 default:
-                    inventory_panel.GetComponent<RectTransform>().GetChild(i).GetComponent<Image>().sprite = null;
-                    inventory_panel.GetComponent<RectTransform>().GetChild(i).GetComponent<Image>().color = new Color(255,255,255,50);
+                    inventory_slots.GetChild(i).GetComponent<Image>().sprite = null;
+                    inventory_slots.GetChild(i).GetComponent<Image>().enabled = false;
                     break;
             }
         }
