@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class InventorySystem : MonoBehaviour
 {
@@ -11,9 +12,11 @@ public class InventorySystem : MonoBehaviour
     bool inventory_open = false;
     [SerializeField] int[] item_ids;
     int next_empty_slot = 0;
+    int selected_slot = 0;
 
     [SerializeField] Canvas inventory_panel;
-    [SerializeField] Transform inventory_slots;
+    [SerializeField] RectTransform inventory_slots;
+    [SerializeField] RectTransform slot_selector;
 
     [SerializeField] Sprite grass_icon;
     [SerializeField] Sprite dirt_icon;
@@ -60,8 +63,6 @@ public class InventorySystem : MonoBehaviour
     {
         for (int i = 0; i < item_ids.Length; i++)
         {
-            Debug.Log(item_ids[i]);
-
             switch (item_ids[i])
             {
                 case 1:
@@ -86,5 +87,10 @@ public class InventorySystem : MonoBehaviour
                     break;
             }
         }
+    }
+
+    void updateSlotSelector()
+    {
+        slot_selector.position = inventory_slots.GetChild(selected_slot).position;
     }
 }
