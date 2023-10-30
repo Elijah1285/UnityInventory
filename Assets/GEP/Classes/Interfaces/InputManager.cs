@@ -6,7 +6,6 @@ using UnityEngine.InputSystem;
 public class InputManager : MonoBehaviour
 {
     public static InputManager instance;
-    public InputAction controls;
 
     [SerializeField] Canvas prompt;
     void Awake()
@@ -21,14 +20,16 @@ public class InputManager : MonoBehaviour
         }
     }
 
-    void OnEnable()
+    public void OnToggle(InputValue value)
     {
-        controls.Enable();
-    }
+        Debug.Log("toggle");
 
-    private void OnDisable()
-    {
-        controls.Disable();
+        InventorySystem.instance.toggleInventory();
+
+        if (prompt != null)
+        {
+            Destroy(prompt.gameObject);
+        }
     }
 
     void Update()
