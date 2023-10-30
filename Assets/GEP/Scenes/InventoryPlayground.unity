@@ -839,6 +839,8 @@ MonoBehaviour:
   grass_icon: {fileID: 21300000, guid: c4fa81419c9a8af4fad8a282f8c69a76, type: 3}
   dirt_icon: {fileID: 21300000, guid: d1546f232d8c90f4cbbd2a21afcbb585, type: 3}
   stone_icon: {fileID: 21300000, guid: 5a1a228d0dc09984787f6e5a55520f30, type: 3}
+  iron_icon: {fileID: 21300000, guid: 920efe01794a12e43acb648b6a288bb0, type: 3}
+  gold_icon: {fileID: 21300000, guid: dcf1ebb6a4ed27749b70083382932a94, type: 3}
   diamond_icon: {fileID: 21300000, guid: 59881276c4cc9384eb47126b0a5b7857, type: 3}
 --- !u!4 &354735281
 Transform:

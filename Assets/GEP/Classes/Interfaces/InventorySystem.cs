@@ -21,6 +21,8 @@ public class InventorySystem : MonoBehaviour
     [SerializeField] Sprite grass_icon;
     [SerializeField] Sprite dirt_icon;
     [SerializeField] Sprite stone_icon;
+    [SerializeField] Sprite iron_icon;
+    [SerializeField] Sprite gold_icon;
     [SerializeField] Sprite diamond_icon;
 
     private void Awake()
@@ -78,6 +80,14 @@ public class InventorySystem : MonoBehaviour
                     inventory_slots.GetChild(i).GetComponent<Image>().enabled = true;
                     break;
                 case 4:
+                    inventory_slots.GetChild(i).GetComponent<Image>().sprite = iron_icon;
+                    inventory_slots.GetChild(i).GetComponent<Image>().enabled = true;
+                    break;
+                case 5:
+                    inventory_slots.GetChild(i).GetComponent<Image>().sprite = gold_icon;
+                    inventory_slots.GetChild(i).GetComponent<Image>().enabled = true;
+                    break;
+                case 6:
                     inventory_slots.GetChild(i).GetComponent<Image>().sprite = diamond_icon;
                     inventory_slots.GetChild(i).GetComponent<Image>().enabled = true;
                     break;
