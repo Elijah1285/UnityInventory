@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &7359187302285566025
+--- !u!1001 &3395075533396681133
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -12,16 +12,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 67175f42b3db925429449e555b5fbb18, type: 2}
+      objectReference: {fileID: 2100000, guid: a517194d73f1d14479b61b2101143dab, type: 2}
     - target: {fileID: 2468472891734673940, guid: 4ca19a796f35ef34b8486280b21f0c91,
         type: 3}
       propertyPath: m_Name
-      value: stone 1
+      value: iron
       objectReference: {fileID: 0}
     - target: {fileID: 3654920104729272017, guid: 4ca19a796f35ef34b8486280b21f0c91,
         type: 3}
       propertyPath: item_id
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3762528891713514257, guid: 4ca19a796f35ef34b8486280b21f0c91,
         type: 3}
