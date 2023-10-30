@@ -22,26 +22,11 @@ public class InputManager : MonoBehaviour
 
     public void OnToggle(InputValue value)
     {
-        Debug.Log("toggle");
-
         InventorySystem.instance.toggleInventory();
 
         if (prompt != null)
         {
             Destroy(prompt.gameObject);
         }
-    }
-
-    void Update()
-    {
-        //if (controls.ReadValu)
-        //{
-        //    InventorySystem.instance.toggleInventory();
-
-        //    if (prompt != null)
-        //    {
-        //        Destroy(prompt.gameObject);
-        //    }
-        //}
     }
 }
