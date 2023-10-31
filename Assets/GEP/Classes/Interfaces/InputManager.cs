@@ -29,4 +29,6 @@ public class InputManager : MonoBehaviour
             Destroy(prompt.gameObject);
         }
     }
+
+
 }
