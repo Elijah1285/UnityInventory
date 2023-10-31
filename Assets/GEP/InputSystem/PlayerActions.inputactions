@@ -2,7 +2,7 @@
     "name": "PlayerActions",
     "maps": [
         {
-            "name": "Player",
+            "name": "Character",
             "id": "f62a4b92-ef5e-4175-8f4c-c9075429d32c",
             "actions": [
                 {
@@ -37,15 +37,6 @@
                     "type": "PassThrough",
                     "id": "980e881e-182c-404c-8cbf-3d09fdb48fef",
                     "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Toggle",
-                    "type": "Button",
-                    "id": "7aa16908-dd70-4dd4-b118-10da81d6a79d",
-                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -227,10 +218,27 @@
                     "action": "Sprint",
                     "isComposite": false,
                     "isPartOfComposite": false
-                },
+                }
+            ]
+        },
+        {
+            "name": "Inventory",
+            "id": "617e961e-19ad-4176-9bc9-ced4a90366c3",
+            "actions": [
+                {
+                    "name": "Toggle",
+                    "type": "Button",
+                    "id": "e80360b5-7e5b-4947-9caa-733e30d8f4a5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
                 {
                     "name": "",
-                    "id": "3d785c5f-5659-4792-aff9-47c5007496f2",
+                    "id": "c78c4449-7832-4f76-bffb-a3c28f4ef761",
                     "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
