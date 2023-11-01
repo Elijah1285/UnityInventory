@@ -13,6 +13,11 @@ public class InventorySystem : MonoBehaviour
     [SerializeField] int[] item_ids;
     int next_empty_slot = 0;
     int selected_slot = 0;
+    const int inventory_row_length = 9;
+    const int inventory_size = 36;
+
+    Vector3 block_placement_offset = new Vector3(0.0f, 0.0f, 1.0f);
+    [SerializeField] Transform player_transform;
 
     [SerializeField] Canvas inventory_panel;
     [SerializeField] RectTransform inventory_slots;
@@ -24,6 +29,13 @@ public class InventorySystem : MonoBehaviour
     [SerializeField] Sprite iron_icon;
     [SerializeField] Sprite gold_icon;
     [SerializeField] Sprite diamond_icon;
+
+    [SerializeField] GameObject grass_block;
+    [SerializeField] GameObject dirt_block;
+    [SerializeField] GameObject stone_block;
+    [SerializeField] GameObject iron_block;
+    [SerializeField] GameObject gold_block;
+    [SerializeField] GameObject diamond_block;
 
     private void Awake()
     {
@@ -56,7 +68,7 @@ public class InventorySystem : MonoBehaviour
         if (next_empty_slot < item_ids.Length)
         {
             item_ids[next_empty_slot] = item_id;
-            next_empty_slot++;
+            updateNextEmptySlot();
             updateInventory();
         }
     }
@@ -104,29 +116,79 @@ public class InventorySystem : MonoBehaviour
         slot_selector.position = inventory_slots.GetChild(selected_slot).position;
     }
 
+    void updateNextEmptySlot()
+    {
+        next_empty_slot++;
+    }
+
     public bool getInventoryState()
     {
         return inventory_open;
     }
 
-    //public void moveSlotSelector(int direction)
-    //{
-    //    switch (direction)
-    //    {
-    //        case 1:
-    //            selected_slot--;
-    //            break;
-    //        case 2:
-    //            selected_slot++;
-    //            break;
-    //        case 3:
-    //            selected_slot -= ;
-    //            break;
-    //        case 4:
-    //            selected_slot += ;
-    //            break;
-    //    }
+    public void moveSlotSelector(int direction)
+    {
+        switch (direction)
+        {
+            case 1:
+                if (selected_slot > 0)
+                {
+                    selected_slot--;
+                }
+                break;
+            case 2:
+                if (selected_slot < inventory_size - 1)
+                {
+                    selected_slot++;
+                }
+                break;
+            case 3:
+                if (selected_slot > inventory_row_length - 1)
+                {
+                    selected_slot -= inventory_row_length;
+                }
+                break;
+            case 4:
+                selected_slot += inventory_row_length;
+                break;
+        }
 
-    //    updateSlotSelector();
-    //}
+        updateSlotSelector();
+    }
+
+    public void placeItem()
+    {
+        int current_ID = item_ids[selected_slot];
+        item_ids[selected_slot] = 0;
+        //updateNextEmptySlot();
+
+        Debug.Log(block_placement_offset);
+        Debug.Log(player_transform.position);
+        Vector3 block_placement_pos = player_transform.position + block_placement_offset;
+        Debug.Log(block_placement_pos);
+
+        switch (current_ID)
+        {
+            case 1:
+                Instantiate(grass_block, block_placement_pos, player_transform.rotation);
+                break;
+            case 2:
+                Instantiate(dirt_block, block_placement_pos, player_transform.rotation);
+                break;
+            case 3:
+                Instantiate(stone_block, block_placement_pos, player_transform.rotation);
+                break;
+            case 4:
+                Instantiate(iron_block, block_placement_pos, player_transform.rotation);
+                break;
+            case 5:
+                Instantiate(gold_block, block_placement_pos, player_transform.rotation);
+                break;
+            case 6:
+                Instantiate(diamond_block, block_placement_pos, player_transform.rotation);
+                break;
+            default:
+                break;
+        }
+    }
 }

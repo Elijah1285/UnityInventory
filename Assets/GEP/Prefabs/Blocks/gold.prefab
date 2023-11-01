@@ -18,6 +18,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: gold
       objectReference: {fileID: 0}
+    - target: {fileID: 2468472891734673940, guid: 4ca19a796f35ef34b8486280b21f0c91,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3654920104729272017, guid: 4ca19a796f35ef34b8486280b21f0c91,
         type: 3}
       propertyPath: item_id
@@ -73,6 +78,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4690952485068932799, guid: 4ca19a796f35ef34b8486280b21f0c91,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

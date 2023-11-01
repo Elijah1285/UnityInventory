@@ -2,7 +2,7 @@
     "name": "PlayerActions",
     "maps": [
         {
-            "name": "Character",
+            "name": "Player",
             "id": "f62a4b92-ef5e-4175-8f4c-c9075429d32c",
             "actions": [
                 {
@@ -37,6 +37,60 @@
                     "type": "PassThrough",
                     "id": "980e881e-182c-404c-8cbf-3d09fdb48fef",
                     "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Toggle",
+                    "type": "Button",
+                    "id": "9bb2373b-e0da-4a7b-b1d9-3b33f986a56e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "InventoryUp",
+                    "type": "Button",
+                    "id": "5d21f541-5d1a-452d-ba91-dd6a0daf79be",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "InventoryDown",
+                    "type": "Button",
+                    "id": "02ac8299-ee41-4e7d-b169-6420501f999d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "InventoryLeft",
+                    "type": "Button",
+                    "id": "994bbf09-f0e6-489b-b589-acc20e0ae382",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "InventoryRight",
+                    "type": "Button",
+                    "id": "733c70c6-5324-427d-8cab-38881adf5b0b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "InventoryPlace",
+                    "type": "Button",
+                    "id": "9c90eb02-6d30-4ccb-84f1-4868e1e63cb3",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -218,63 +272,10 @@
                     "action": "Sprint",
                     "isComposite": false,
                     "isPartOfComposite": false
-                }
-            ]
-        },
-        {
-            "name": "Inventory",
-            "id": "617e961e-19ad-4176-9bc9-ced4a90366c3",
-            "actions": [
-                {
-                    "name": "Toggle",
-                    "type": "Button",
-                    "id": "e80360b5-7e5b-4947-9caa-733e30d8f4a5",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 },
-                {
-                    "name": "InventoryUp",
-                    "type": "Button",
-                    "id": "586ea2ed-ac14-4406-a9d1-e6cea899ed98",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "InventoryDown",
-                    "type": "Button",
-                    "id": "0d410000-e63a-4e87-8a77-2449609192b4",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "InventoryLeft",
-                    "type": "Button",
-                    "id": "66a01702-1f35-4ac9-baa7-830defdae3fa",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "InventoryRight",
-                    "type": "Button",
-                    "id": "5e5a5ae2-e0f7-4536-b428-acb02d51f5d8",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                }
-            ],
-            "bindings": [
                 {
                     "name": "",
-                    "id": "c78c4449-7832-4f76-bffb-a3c28f4ef761",
+                    "id": "35fd782a-04c0-4b82-a6a2-1f88b1839660",
                     "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
@@ -285,7 +286,7 @@
                 },
                 {
                     "name": "",
-                    "id": "a38259bb-5b29-4cb2-963b-d1a2fedf4034",
+                    "id": "4514ff80-dde6-4108-a4d8-9629830e062f",
                     "path": "<Keyboard>/upArrow",
                     "interactions": "",
                     "processors": "",
@@ -296,7 +297,7 @@
                 },
                 {
                     "name": "",
-                    "id": "c5582b46-6d4d-4fc3-9a5f-5b5184a031bb",
+                    "id": "3e910db3-05da-4696-9116-b824d9f69e54",
                     "path": "<Keyboard>/downArrow",
                     "interactions": "",
                     "processors": "",
@@ -307,7 +308,7 @@
                 },
                 {
                     "name": "",
-                    "id": "49d2c12f-2d33-47a0-a4af-cde2f6a691a8",
+                    "id": "d47bbd78-1c22-4700-8602-5281a0b3abf9",
                     "path": "<Keyboard>/leftArrow",
                     "interactions": "",
                     "processors": "",
@@ -318,12 +319,23 @@
                 },
                 {
                     "name": "",
-                    "id": "25c3aaf7-027b-405c-bbf0-adc48d1786b1",
+                    "id": "842bc9b0-743d-4f62-9b9c-84c27fe457df",
                     "path": "<Keyboard>/rightArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "InventoryRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2e9f448f-10d6-43f3-a50d-ab42555b7d82",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "InventoryPlace",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
