@@ -103,4 +103,30 @@ public class InventorySystem : MonoBehaviour
     {
         slot_selector.position = inventory_slots.GetChild(selected_slot).position;
     }
+
+    public bool getInventoryState()
+    {
+        return inventory_open;
+    }
+
+    //public void moveSlotSelector(int direction)
+    //{
+    //    switch (direction)
+    //    {
+    //        case 1:
+    //            selected_slot--;
+    //            break;
+    //        case 2:
+    //            selected_slot++;
+    //            break;
+    //        case 3:
+    //            selected_slot -= ;
+    //            break;
+    //        case 4:
+    //            selected_slot += ;
+    //            break;
+    //    }
+
+    //    updateSlotSelector();
+    //}
 }
