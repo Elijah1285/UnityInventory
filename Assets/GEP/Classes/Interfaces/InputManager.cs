@@ -7,7 +7,7 @@ public class InputManager : MonoBehaviour
 {
     public static InputManager instance;
 
-    [SerializeField] Canvas prompt;
+    [SerializeField] GameObject toggle_inv_text;
     void Awake()
     {
         if (instance == null)
@@ -24,9 +24,9 @@ public class InputManager : MonoBehaviour
     {
         InventorySystem.instance.toggleInventory();
 
-        if (prompt != null)
+        if (toggle_inv_text != null)
         {
-            Destroy(prompt.gameObject);
+            Destroy(toggle_inv_text);
         }
     }
 

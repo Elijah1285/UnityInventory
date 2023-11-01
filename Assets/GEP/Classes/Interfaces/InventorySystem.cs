@@ -15,8 +15,9 @@ public class InventorySystem : MonoBehaviour
     int selected_slot = 0;
     const int inventory_row_length = 9;
     const int inventory_size = 36;
+    float select_block_text_disappear_timer;
 
-    Vector3 block_placement_offset = new Vector3(0.0f, 0.0f, 1.0f);
+    Vector3 block_placement_offset = new Vector3(0.0f, 0.5f, 1.0f);
     [SerializeField] Transform player_transform;
 
     [SerializeField] Canvas inventory_panel;
@@ -36,6 +37,8 @@ public class InventorySystem : MonoBehaviour
     [SerializeField] GameObject iron_block;
     [SerializeField] GameObject gold_block;
     [SerializeField] GameObject diamond_block;
+
+    [SerializeField] GameObject select_block_text;
 
     private void Awake()
     {
@@ -188,7 +191,24 @@ public class InventorySystem : MonoBehaviour
                 Instantiate(diamond_block, block_placement_pos, player_transform.rotation);
                 break;
             default:
+                if (!select_block_text.activeSelf)
+                {
+                    select_block_text.SetActive(true);
+                    select_block_text_disappear_timer = 5.0f;
+                    StartCoroutine(selectBlockTextDisappearCountdown());
+                }
                 break;
         }
+    }
+
+    IEnumerator selectBlockTextDisappearCountdown()
+    {
+        while (select_block_text_disappear_timer > 0)
+        {
+            select_block_text_disappear_timer -= Time.deltaTime;
+            yield return null;
+        }
+
+        select_block_text.SetActive(false);
     }
 }
