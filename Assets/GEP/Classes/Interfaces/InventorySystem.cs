@@ -10,7 +10,7 @@ public class InventorySystem : MonoBehaviour
     public static InventorySystem instance;
 
     bool inventory_open = false;
-    [SerializeField] int[] item_ids;
+    [SerializeField] int[,] item_ids = new int[36, 2];
     int next_empty_slot = 0;
     int selected_slot = 0;
     const int inventory_row_length = 9;
@@ -76,7 +76,7 @@ public class InventorySystem : MonoBehaviour
     {
         if (next_empty_slot < item_ids.Length)
         {
-            item_ids[next_empty_slot] = item_id;
+            item_ids[next_empty_slot, 0] = item_id;
             updateNextEmptySlot();
             updateInventory();
         }
@@ -84,9 +84,9 @@ public class InventorySystem : MonoBehaviour
 
     void updateInventory()
     {
-        for (int i = 0; i < item_ids.Length; i++)
+        for (int i = 0; i < item_ids.GetLength(0); i++)
         {
-            switch (item_ids[i])
+            switch (item_ids[i, 0])
             {
                 case 1:
                     inventory_slots.GetChild(i).GetComponent<Image>().sprite = grass_icon;
@@ -129,7 +129,7 @@ public class InventorySystem : MonoBehaviour
     {
         for (int i = 0; i < item_ids.Length; i++)
         {
-            if (item_ids[i] == 0)
+            if (item_ids[i, 0] == 0)
             {
                 next_empty_slot = i;
                 break;
@@ -174,8 +174,8 @@ public class InventorySystem : MonoBehaviour
 
     public void placeItem()
     {
-        int current_ID = item_ids[selected_slot];
-        item_ids[selected_slot] = 0;
+        int current_ID = item_ids[selected_slot, 0];
+        item_ids[selected_slot, 0] = 0;
         updateNextEmptySlot();
 
         Vector3 block_placement_pos = player_transform.position + block_placement_offset;
