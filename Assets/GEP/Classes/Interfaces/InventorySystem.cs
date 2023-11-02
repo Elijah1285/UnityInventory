@@ -139,13 +139,21 @@ public class InventorySystem : MonoBehaviour
 
     void updateNextEmptySlot()
     {
-        for (int i = 0; i < item_ids.Length; i++)
+        bool set_empty_slot = false;
+
+        for (int i = 0; i < item_ids.GetLength(0); i++)
         {
             if (item_ids[i, 0] == 0)
             {
                 next_empty_slot = i;
+                set_empty_slot = true;
                 break;
             }
+        }
+
+        if (!set_empty_slot)
+        {
+            next_empty_slot = item_ids.Length;
         }
     }
 
