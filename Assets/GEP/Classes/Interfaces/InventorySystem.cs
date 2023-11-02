@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class InventorySystem : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class InventorySystem : MonoBehaviour
 
     [SerializeField] Canvas inventory_panel;
     [SerializeField] RectTransform inventory_slots;
+    [SerializeField] RectTransform inventory_numbers;
     [SerializeField] RectTransform slot_selector;
 
     [SerializeField] Sprite grass_icon;
@@ -74,13 +76,14 @@ public class InventorySystem : MonoBehaviour
 
     public bool addItem(int item_id)
     {
-        //for (int i = 0; i < item_ids.GetLength(0);  i++)
-        //{
-        //    if (item_id == item_ids[i, 0])
-        //    {
-
-        //    }
-        //}
+        for (int i = 0; i < item_ids.GetLength(0); i++)
+        {
+            if (item_id == item_ids[i, 0])
+            {
+                item_ids[i, 1]++;
+                inventory_numbers.GetChild(i).GetComponent<TMP_Text>().text = item_ids[i, 1].ToString();
+            }
+        }
 
         if (next_empty_slot < item_ids.Length)
         {
