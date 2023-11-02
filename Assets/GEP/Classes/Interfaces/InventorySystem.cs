@@ -165,30 +165,27 @@ public class InventorySystem : MonoBehaviour
         item_ids[selected_slot] = 0;
         //updateNextEmptySlot();
 
-        Debug.Log(block_placement_offset);
-        Debug.Log(player_transform.position);
         Vector3 block_placement_pos = player_transform.position + block_placement_offset;
-        Debug.Log(block_placement_pos);
 
         switch (current_ID)
         {
             case 1:
-                Instantiate(grass_block, block_placement_pos, player_transform.rotation);
+                Instantiate(grass_block, block_placement_pos, Quaternion.identity);
                 break;
             case 2:
-                Instantiate(dirt_block, block_placement_pos, player_transform.rotation);
+                Instantiate(dirt_block, block_placement_pos, Quaternion.identity);
                 break;
             case 3:
-                Instantiate(stone_block, block_placement_pos, player_transform.rotation);
+                Instantiate(stone_block, block_placement_pos, Quaternion.identity);
                 break;
             case 4:
-                Instantiate(iron_block, block_placement_pos, player_transform.rotation);
+                Instantiate(iron_block, block_placement_pos, Quaternion.identity);
                 break;
             case 5:
-                Instantiate(gold_block, block_placement_pos, player_transform.rotation);
+                Instantiate(gold_block, block_placement_pos, Quaternion.identity);
                 break;
             case 6:
-                Instantiate(diamond_block, block_placement_pos, player_transform.rotation);
+                Instantiate(diamond_block, block_placement_pos, Quaternion.identity);
                 break;
             default:
                 if (!select_block_text.activeSelf)
@@ -199,6 +196,8 @@ public class InventorySystem : MonoBehaviour
                 }
                 break;
         }
+
+        updateInventory();
     }
 
     IEnumerator selectBlockTextDisappearCountdown()
