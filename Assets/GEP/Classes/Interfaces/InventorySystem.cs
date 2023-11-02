@@ -39,6 +39,7 @@ public class InventorySystem : MonoBehaviour
     [SerializeField] GameObject diamond_block;
 
     [SerializeField] GameObject select_block_text;
+    [SerializeField] GameObject place_block_text;
 
     private void Awake()
     {
@@ -59,6 +60,11 @@ public class InventorySystem : MonoBehaviour
         if (inventory_open)
         {
             inventory_panel.gameObject.SetActive(true);
+
+            if (place_block_text != null)
+            {
+                place_block_text.SetActive(true);
+            }
         }
         else
         {
@@ -205,6 +211,11 @@ public class InventorySystem : MonoBehaviour
         }
 
         updateInventory();
+
+        if (place_block_text != null)
+        {
+            Destroy(place_block_text);
+        }
     }
 
     IEnumerator selectBlockTextDisappearCountdown()
