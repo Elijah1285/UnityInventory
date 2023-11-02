@@ -12,7 +12,9 @@ public class Block : MonoBehaviour, IPickupable
     /// </summary>
     public void Pickup()
     {
-        InventorySystem.instance.addItem(item_id);
-        Destroy(gameObject);
+        if (InventorySystem.instance.addItem(item_id))
+        {
+            Destroy(gameObject);
+        }
     }
 }
