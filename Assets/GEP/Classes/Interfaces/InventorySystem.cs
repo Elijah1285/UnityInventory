@@ -121,7 +121,14 @@ public class InventorySystem : MonoBehaviour
 
     void updateNextEmptySlot()
     {
-        next_empty_slot++;
+        for (int i = 0; i < item_ids.Length; i++)
+        {
+            if (item_ids[i] == 0)
+            {
+                next_empty_slot = i;
+                break;
+            }
+        }
     }
 
     public bool getInventoryState()
@@ -163,7 +170,7 @@ public class InventorySystem : MonoBehaviour
     {
         int current_ID = item_ids[selected_slot];
         item_ids[selected_slot] = 0;
-        //updateNextEmptySlot();
+        updateNextEmptySlot();
 
         Vector3 block_placement_pos = player_transform.position + block_placement_offset;
 
