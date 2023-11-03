@@ -10,12 +10,14 @@ public class Chest : MonoBehaviour
     int next_empty_slot = 0;
     int selected_slot = 0;
     bool chest_open = false;
+    bool in_chest = false;
     int[,] item_ids = new int[18, 2];
 
     [SerializeField] int max_stack;
     [SerializeField] Canvas chest_panel;
     [SerializeField] RectTransform chest_numbers;
     [SerializeField] RectTransform chest_slots;
+    [SerializeField] RectTransform slot_selector;
     [SerializeField] Sprite grass_icon;
     [SerializeField] Sprite dirt_icon;
     [SerializeField] Sprite stone_icon;
@@ -129,6 +131,20 @@ public class Chest : MonoBehaviour
         if (!set_empty_slot)
         {
             next_empty_slot = item_ids.Length;
+        }
+    }
+
+    void chestSwitch()
+    {
+        in_chest = !in_chest;
+
+        if (in_chest)
+        {
+            slot_selector.gameObject.SetActive(true);
+        }
+        else
+        {
+            slot_selector.gameObject.SetActive(false);
         }
     }
 }

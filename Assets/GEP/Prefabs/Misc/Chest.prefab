@@ -804,7 +804,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7889815775357075053
 RectTransform:
   m_ObjectHideFlags: 0
@@ -958,6 +958,7 @@ MonoBehaviour:
   chest_panel: {fileID: 5390325504909559870}
   chest_numbers: {fileID: 1399012694911612749}
   chest_slots: {fileID: 6396335423428281577}
+  slot_selector: {fileID: 7889815775357075053}
   grass_icon: {fileID: 21300000, guid: c4fa81419c9a8af4fad8a282f8c69a76, type: 3}
   dirt_icon: {fileID: 21300000, guid: d1546f232d8c90f4cbbd2a21afcbb585, type: 3}
   stone_icon: {fileID: 21300000, guid: 5a1a228d0dc09984787f6e5a55520f30, type: 3}

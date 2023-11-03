@@ -16,6 +16,7 @@ public class InventorySystem : MonoBehaviour
     const int inventory_row_length = 9;
     const int inventory_size = 36;
     float select_block_text_disappear_timer;
+    bool chest_open = false;
     bool in_chest = false;
     int[,] item_ids = new int[36, 2];
     Chest current_chest = null;
@@ -77,11 +78,11 @@ public class InventorySystem : MonoBehaviour
 
     public void toggleChest(Chest chest)
     {
-        in_chest = !in_chest;
+        chest_open = !chest_open;
 
         Transform inventory_content = inventory_panel.transform.GetChild(0);
 
-        if (!in_chest)
+        if (!chest_open)
         {
             inventory_content.localPosition = new Vector3(0, -35f, 0);
             selected_item_text.gameObject.SetActive(true);
@@ -288,7 +289,7 @@ public class InventorySystem : MonoBehaviour
         updateInventory();
         updateNextEmptySlot();
 
-        if (!in_chest)
+        if (!chest_open)
         {
             Vector3 block_placement_pos = player_transform.position + block_placement_offset;
 
@@ -330,6 +331,20 @@ public class InventorySystem : MonoBehaviour
         if (place_block_text != null)
         {
             Destroy(place_block_text);
+        }
+    }
+
+    public void chestSwitch()
+    {
+        in_chest = !in_chest;
+
+        if (!in_chest)
+        {
+            slot_selector.gameObject.SetActive(true);
+        }
+        else
+        {
+            slot_selector.gameObject.SetActive(false);
         }
     }
 

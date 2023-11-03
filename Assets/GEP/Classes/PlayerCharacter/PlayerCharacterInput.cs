@@ -41,6 +41,11 @@ public class PlayerCharacterInput : MonoBehaviour
         SprintInput(value.isPressed);
     }
 
+    public void OnChestSwitch(InputValue value)
+    {
+        InventorySystem.instance.chestSwitch();           
+    }
+
     public void MoveInput(Vector2 newMoveDirection)
     {
         move = newMoveDirection;
