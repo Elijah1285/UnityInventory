@@ -103,8 +103,15 @@ public class InventorySystem : MonoBehaviour
             item_ids[next_empty_slot, 0] = item_id;
             item_ids[next_empty_slot, 1]++;
             inventory_numbers.GetChild(next_empty_slot).GetComponent<TMP_Text>().text = item_ids[next_empty_slot, 1].ToString();
-            updateNextEmptySlot();
+            
             updateInventory();
+
+            if (selected_slot == next_empty_slot)
+            {
+                updateSelectedItemText();
+            }
+
+            updateNextEmptySlot();
 
             return true;
         }
@@ -157,8 +164,6 @@ public class InventorySystem : MonoBehaviour
 
     void updateSelectedItemText()
     {
-        Debug.Log(selected_item_text);
-
         switch (item_ids[selected_slot, 0])
         {
             case 1:
@@ -258,6 +263,7 @@ public class InventorySystem : MonoBehaviour
             else if (item_ids[selected_slot, 1] <= 0)
             {
                 item_ids[selected_slot, 0] = 0;
+                updateSelectedItemText();
             }
         }
 
