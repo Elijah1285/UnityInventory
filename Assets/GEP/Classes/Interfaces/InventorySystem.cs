@@ -44,6 +44,8 @@ public class InventorySystem : MonoBehaviour
     [SerializeField] GameObject select_block_text;
     [SerializeField] GameObject place_block_text;
 
+    [SerializeField] TMP_Text selected_item_text;
+
     private void Awake()
     {
         if (instance == null)
@@ -153,6 +155,34 @@ public class InventorySystem : MonoBehaviour
         slot_selector.position = inventory_slots.GetChild(selected_slot).position;
     }
 
+    void updateSelectedItemText()
+    {
+        switch (item_ids[selected_slot, 0])
+        {
+            case 1:
+                selected_item_text.text = "Grass";
+                break;
+            case 2:
+                selected_item_text.text = "Dirt";
+                break;
+            case 3:
+                selected_item_text.text = "Stone";
+                break;
+            case 4:
+                selected_item_text.text = "Iron";
+                break;
+            case 5:
+                selected_item_text.text = "Gold";
+                break;
+            case 6:
+                selected_item_text.text = "Diamond";
+                break;
+            default:
+                selected_item_text = null;
+                break;
+        }
+    }
+
     void updateNextEmptySlot()
     {
         bool set_empty_slot = false;
@@ -206,6 +236,7 @@ public class InventorySystem : MonoBehaviour
         }
 
         updateSlotSelector();
+        updateSelectedItemText();
     }
 
     public void placeItem()
