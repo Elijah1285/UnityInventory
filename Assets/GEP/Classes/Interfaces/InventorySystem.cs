@@ -17,6 +17,7 @@ public class InventorySystem : MonoBehaviour
     const int inventory_size = 36;
     float select_block_text_disappear_timer;
     bool in_chest = false;
+    int[,] item_ids = new int[36, 2];
     Chest current_chest = null;
     Vector3 block_placement_offset = new Vector3(0.0f, 0.5f, 1.0f);
 
@@ -38,8 +39,7 @@ public class InventorySystem : MonoBehaviour
     [SerializeField] GameObject stone_block;
     [SerializeField] GameObject iron_block;
     [SerializeField] GameObject gold_block;
-    [SerializeField] GameObject diamond_block;
-    [SerializeField] int[,] item_ids = new int[36, 2];
+    [SerializeField] GameObject diamond_block;  
     [SerializeField] GameObject select_block_text;
     [SerializeField] GameObject place_block_text;
     [SerializeField] TMP_Text selected_item_text;
@@ -324,7 +324,7 @@ public class InventorySystem : MonoBehaviour
         }
         else
         {
-
+            current_chest.addItem(current_ID);
         }
 
         if (place_block_text != null)

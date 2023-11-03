@@ -10,11 +10,18 @@ public class Chest : MonoBehaviour
     int next_empty_slot = 0;
     int selected_slot = 0;
     bool chest_open = false;
+    int[,] item_ids = new int[18, 2];
 
     [SerializeField] int max_stack;
-    [SerializeField] int[,] item_ids = new int[18, 2];
     [SerializeField] Canvas chest_panel;
     [SerializeField] RectTransform chest_numbers;
+    [SerializeField] RectTransform chest_slots;
+    [SerializeField] Sprite grass_icon;
+    [SerializeField] Sprite dirt_icon;
+    [SerializeField] Sprite stone_icon;
+    [SerializeField] Sprite iron_icon;
+    [SerializeField] Sprite gold_icon;
+    [SerializeField] Sprite diamond_icon;
 
     public void toggleChest()
     {
@@ -30,7 +37,7 @@ public class Chest : MonoBehaviour
         }
     }
 
-    bool addItem(int item_id)
+    public bool addItem(int item_id)
     {
         for (int i = 0; i < item_ids.GetLength(0); i++)
         {
@@ -69,7 +76,40 @@ public class Chest : MonoBehaviour
 
     void updateChest()
     {
-
+        for (int i = 0; i < item_ids.GetLength(0); i++)
+        {
+            switch (item_ids[i, 0])
+            {
+                case 1:
+                    chest_slots.GetChild(i).GetComponent<Image>().sprite = grass_icon;
+                    chest_slots.GetChild(i).GetComponent<Image>().enabled = true;
+                    break;
+                case 2:
+                    chest_slots.GetChild(i).GetComponent<Image>().sprite = dirt_icon;
+                    chest_slots.GetChild(i).GetComponent<Image>().enabled = true;
+                    break;
+                case 3:
+                    chest_slots.GetChild(i).GetComponent<Image>().sprite = stone_icon;
+                    chest_slots.GetChild(i).GetComponent<Image>().enabled = true;
+                    break;
+                case 4:
+                    chest_slots.GetChild(i).GetComponent<Image>().sprite = iron_icon;
+                    chest_slots.GetChild(i).GetComponent<Image>().enabled = true;
+                    break;
+                case 5:
+                    chest_slots.GetChild(i).GetComponent<Image>().sprite = gold_icon;
+                    chest_slots.GetChild(i).GetComponent<Image>().enabled = true;
+                    break;
+                case 6:
+                    chest_slots.GetChild(i).GetComponent<Image>().sprite = diamond_icon;
+                    chest_slots.GetChild(i).GetComponent<Image>().enabled = true;
+                    break;
+                default:
+                    chest_slots.GetChild(i).GetComponent<Image>().sprite = null;
+                    chest_slots.GetChild(i).GetComponent<Image>().enabled = false;
+                    break;
+            }
+        }
     }
 
     void updateNextEmptySlot()
