@@ -157,6 +157,8 @@ public class InventorySystem : MonoBehaviour
 
     void updateSelectedItemText()
     {
+        Debug.Log(selected_item_text);
+
         switch (item_ids[selected_slot, 0])
         {
             case 1:
@@ -178,7 +180,7 @@ public class InventorySystem : MonoBehaviour
                 selected_item_text.text = "Diamond";
                 break;
             default:
-                selected_item_text = null;
+                selected_item_text.text = "";
                 break;
         }
     }
