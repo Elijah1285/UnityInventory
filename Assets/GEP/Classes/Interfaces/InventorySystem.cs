@@ -182,7 +182,7 @@ public class InventorySystem : MonoBehaviour
                 selected_item_text.text = "Gold";
                 break;
             case 6:
-                selected_item_text.text = "Diamond";
+                selected_item_text.text = "Diamond:\nThe strongest and most precious resource";
                 break;
             default:
                 selected_item_text.text = "";
