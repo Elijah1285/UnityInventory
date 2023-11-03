@@ -82,12 +82,16 @@ public class InventorySystem : MonoBehaviour
             {
                 item_ids[i, 1]++;
                 inventory_numbers.GetChild(i).GetComponent<TMP_Text>().text = item_ids[i, 1].ToString();
+                return true;
             }
         }
+
 
         if (next_empty_slot < item_ids.Length)
         {
             item_ids[next_empty_slot, 0] = item_id;
+            item_ids[next_empty_slot, 1]++;
+            inventory_numbers.GetChild(next_empty_slot).GetComponent<TMP_Text>().text = item_ids[next_empty_slot, 1].ToString();
             updateNextEmptySlot();
             updateInventory();
 
@@ -198,7 +202,19 @@ public class InventorySystem : MonoBehaviour
     public void placeItem()
     {
         int current_ID = item_ids[selected_slot, 0];
-        item_ids[selected_slot, 0] = 0;
+
+        if (item_ids[selected_slot, 1] > 0)
+        {
+            item_ids[selected_slot, 1]--;
+            inventory_numbers.GetChild(selected_slot).GetComponent<TMP_Text>().text = item_ids[selected_slot, 1].ToString();
+
+            if (item_ids[selected_slot, 1] <= 0)
+            {
+                item_ids[selected_slot, 0] = 0;
+            }
+        }
+
+        updateInventory();
         updateNextEmptySlot();
 
         Vector3 block_placement_pos = player_transform.position + block_placement_offset;
@@ -232,8 +248,6 @@ public class InventorySystem : MonoBehaviour
                 }
                 break;
         }
-
-        updateInventory();
 
         if (place_block_text != null)
         {

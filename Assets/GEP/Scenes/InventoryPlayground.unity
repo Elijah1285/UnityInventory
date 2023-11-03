@@ -2280,6 +2280,7 @@ MonoBehaviour:
   player_transform: {fileID: 1790312036}
   inventory_panel: {fileID: 1479499809}
   inventory_slots: {fileID: 298741382}
+  inventory_numbers: {fileID: 476638942}
   slot_selector: {fileID: 1379489646}
   grass_icon: {fileID: 21300000, guid: c4fa81419c9a8af4fad8a282f8c69a76, type: 3}
   dirt_icon: {fileID: 21300000, guid: d1546f232d8c90f4cbbd2a21afcbb585, type: 3}
