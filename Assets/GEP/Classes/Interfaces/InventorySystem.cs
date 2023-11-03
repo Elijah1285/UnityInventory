@@ -167,19 +167,19 @@ public class InventorySystem : MonoBehaviour
         switch (item_ids[selected_slot, 0])
         {
             case 1:
-                selected_item_text.text = "Grass";
+                selected_item_text.text = "Grass:\nIt's one of the most common plants in the world";
                 break;
             case 2:
-                selected_item_text.text = "Dirt";
+                selected_item_text.text = "Dirt:\nIt's made up of sand, silt and clay";
                 break;
             case 3:
-                selected_item_text.text = "Stone";
+                selected_item_text.text = "Stone:\nMost ancient monuments use this resource";
                 break;
             case 4:
-                selected_item_text.text = "Iron";
+                selected_item_text.text = "Iron:\nIt's symbol is Fe, it's combined with carbon to form steel";
                 break;
             case 5:
-                selected_item_text.text = "Gold";
+                selected_item_text.text = "Gold:\nIt's symbol is Au, it's precious but delicate";
                 break;
             case 6:
                 selected_item_text.text = "Diamond:\nThe strongest and most precious resource";
