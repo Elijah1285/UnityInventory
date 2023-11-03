@@ -17,6 +17,7 @@ public class InventorySystem : MonoBehaviour
     const int inventory_row_length = 9;
     const int inventory_size = 36;
     float select_block_text_disappear_timer;
+    [SerializeField] int max_stack;
 
     Vector3 block_placement_offset = new Vector3(0.0f, 0.5f, 1.0f);
     [SerializeField] Transform player_transform;
@@ -78,7 +79,7 @@ public class InventorySystem : MonoBehaviour
     {
         for (int i = 0; i < item_ids.GetLength(0); i++)
         {
-            if (item_id == item_ids[i, 0])
+            if (item_id == item_ids[i, 0] && item_ids[i, 1] < max_stack)
             {
                 item_ids[i, 1]++;
                 inventory_numbers.GetChild(i).GetComponent<TMP_Text>().text = item_ids[i, 1].ToString();
