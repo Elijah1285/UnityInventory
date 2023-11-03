@@ -82,6 +82,14 @@ public class InventorySystem : MonoBehaviour
             if (item_id == item_ids[i, 0] && item_ids[i, 1] < max_stack)
             {
                 item_ids[i, 1]++;
+
+                GameObject number = inventory_numbers.GetChild(i).gameObject;
+
+                if (!number.activeSelf)
+                {
+                    number.SetActive(true);
+                }
+
                 inventory_numbers.GetChild(i).GetComponent<TMP_Text>().text = item_ids[i, 1].ToString();
                 return true;
             }
@@ -209,7 +217,11 @@ public class InventorySystem : MonoBehaviour
             item_ids[selected_slot, 1]--;
             inventory_numbers.GetChild(selected_slot).GetComponent<TMP_Text>().text = item_ids[selected_slot, 1].ToString();
 
-            if (item_ids[selected_slot, 1] <= 0)
+            if (item_ids[selected_slot, 1] == 1)
+            {
+                inventory_numbers.GetChild(selected_slot).gameObject.SetActive(false);
+            }
+            else if (item_ids[selected_slot, 1] <= 0)
             {
                 item_ids[selected_slot, 0] = 0;
             }
