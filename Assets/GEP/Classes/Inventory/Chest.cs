@@ -25,18 +25,18 @@ public class Chest : MonoBehaviour
     [SerializeField] Sprite gold_icon;
     [SerializeField] Sprite diamond_icon;
 
-    public void toggleChest()
+    public void enterChest()
     {
-        chest_open = !chest_open;
+        chest_open = true;
 
-        if (chest_open)
-        {
-            chest_panel.gameObject.SetActive(true);
-        }
-        else
-        {
-            chest_panel.gameObject.SetActive(false);
-        }
+        chest_panel.gameObject.SetActive(true);
+    }
+
+    public void exitChest()
+    {
+        chest_open = false;
+
+        chest_panel.gameObject.SetActive(false);
     }
 
     public bool addItem(int item_id)
@@ -134,7 +134,7 @@ public class Chest : MonoBehaviour
         }
     }
 
-    void chestSwitch()
+    public void chestSwitch()
     {
         in_chest = !in_chest;
 
