@@ -83,11 +83,11 @@ public class InventorySystem : MonoBehaviour
             {
                 item_ids[i, 1]++;
 
-                GameObject number = inventory_numbers.GetChild(i).gameObject;
+                GameObject item_count = inventory_numbers.GetChild(i).gameObject;
 
-                if (!number.activeSelf)
+                if (!item_count.activeSelf)
                 {
-                    number.SetActive(true);
+                    item_count.SetActive(true);
                 }
 
                 inventory_numbers.GetChild(i).GetComponent<TMP_Text>().text = item_ids[i, 1].ToString();
@@ -215,11 +215,12 @@ public class InventorySystem : MonoBehaviour
         if (item_ids[selected_slot, 1] > 0)
         {
             item_ids[selected_slot, 1]--;
-            inventory_numbers.GetChild(selected_slot).GetComponent<TMP_Text>().text = item_ids[selected_slot, 1].ToString();
+            GameObject item_count = inventory_numbers.GetChild(selected_slot).gameObject;
+            item_count.GetComponent<TMP_Text>().text = item_ids[selected_slot, 1].ToString();
 
             if (item_ids[selected_slot, 1] == 1)
             {
-                inventory_numbers.GetChild(selected_slot).gameObject.SetActive(false);
+                item_count.SetActive(false);
             }
             else if (item_ids[selected_slot, 1] <= 0)
             {
