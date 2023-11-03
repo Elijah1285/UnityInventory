@@ -11,5 +11,12 @@ public class PlayerInteraction : MonoBehaviour
         {
             pickupable.Pickup();
         }
+
+        GameObject collision_object = collision.gameObject;
+
+        if (collision_object.tag == "Chest")
+        {
+            collision_object.GetComponent<Chest>().toggleChest();
+        }
     }
 }
