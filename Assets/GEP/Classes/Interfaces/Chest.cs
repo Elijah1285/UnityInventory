@@ -15,5 +15,14 @@ public class Chest : MonoBehaviour
     public void toggleChest()
     {
         chest_open = !chest_open;
+
+        if (chest_open)
+        {
+            chest_panel.gameObject.SetActive(true);
+        }
+        else
+        {
+            chest_panel.gameObject.SetActive(false);
+        }
     }
 }

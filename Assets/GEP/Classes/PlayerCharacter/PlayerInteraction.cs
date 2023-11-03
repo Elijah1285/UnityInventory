@@ -17,6 +17,7 @@ public class PlayerInteraction : MonoBehaviour
         if (collision_object.tag == "Chest")
         {
             collision_object.GetComponent<Chest>().toggleChest();
+
         }
     }
 }

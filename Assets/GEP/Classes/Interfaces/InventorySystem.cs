@@ -17,6 +17,7 @@ public class InventorySystem : MonoBehaviour
     const int inventory_row_length = 9;
     const int inventory_size = 36;
     float select_block_text_disappear_timer;
+    bool in_chest = false;
     [SerializeField] int max_stack;
 
     Vector3 block_placement_offset = new Vector3(0.0f, 0.5f, 1.0f);
