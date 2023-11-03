@@ -11,40 +11,37 @@ public class InventorySystem : MonoBehaviour
     public static InventorySystem instance;
 
     bool inventory_open = false;
-    [SerializeField] int[,] item_ids = new int[36, 2];
     int next_empty_slot = 0;
     int selected_slot = 0;
     const int inventory_row_length = 9;
     const int inventory_size = 36;
     float select_block_text_disappear_timer;
     bool in_chest = false;
-    [SerializeField] int max_stack;
-
+    Chest current_chest = null;
     Vector3 block_placement_offset = new Vector3(0.0f, 0.5f, 1.0f);
-    [SerializeField] Transform player_transform;
 
+
+    [SerializeField] int max_stack;
+    [SerializeField] Transform player_transform;
     [SerializeField] Canvas inventory_panel;
     [SerializeField] RectTransform inventory_slots;
     [SerializeField] RectTransform inventory_numbers;
     [SerializeField] RectTransform slot_selector;
-
     [SerializeField] Sprite grass_icon;
     [SerializeField] Sprite dirt_icon;
     [SerializeField] Sprite stone_icon;
     [SerializeField] Sprite iron_icon;
     [SerializeField] Sprite gold_icon;
     [SerializeField] Sprite diamond_icon;
-
     [SerializeField] GameObject grass_block;
     [SerializeField] GameObject dirt_block;
     [SerializeField] GameObject stone_block;
     [SerializeField] GameObject iron_block;
     [SerializeField] GameObject gold_block;
     [SerializeField] GameObject diamond_block;
-
+    [SerializeField] int[,] item_ids = new int[36, 2];
     [SerializeField] GameObject select_block_text;
     [SerializeField] GameObject place_block_text;
-
     [SerializeField] TMP_Text selected_item_text;
 
     private void Awake()
@@ -78,6 +75,26 @@ public class InventorySystem : MonoBehaviour
         }
     }
 
+    public void toggleChest(Chest chest)
+    {
+        in_chest = !in_chest;
+
+        Transform inventory_content = inventory_panel.transform.GetChild(0);
+
+        if (!in_chest)
+        {
+            inventory_content.localPosition = new Vector3(0, -35f, 0);
+            selected_item_text.gameObject.SetActive(true);
+            current_chest = null;
+        }
+        else
+        {
+            inventory_content.localPosition = new Vector3(0, -220f, 0);
+            selected_item_text.gameObject.SetActive(false);
+            current_chest = chest;
+        }
+    }
+
     public bool addItem(int item_id)
     {
         for (int i = 0; i < item_ids.GetLength(0); i++)
@@ -93,7 +110,7 @@ public class InventorySystem : MonoBehaviour
                     item_count.SetActive(true);
                 }
 
-                inventory_numbers.GetChild(i).GetComponent<TMP_Text>().text = item_ids[i, 1].ToString();
+                item_count.GetComponent<TMP_Text>().text = item_ids[i, 1].ToString();
                 return true;
             }
         }
@@ -271,36 +288,43 @@ public class InventorySystem : MonoBehaviour
         updateInventory();
         updateNextEmptySlot();
 
-        Vector3 block_placement_pos = player_transform.position + block_placement_offset;
-
-        switch (current_ID)
+        if (!in_chest)
         {
-            case 1:
-                Instantiate(grass_block, block_placement_pos, Quaternion.identity);
-                break;
-            case 2:
-                Instantiate(dirt_block, block_placement_pos, Quaternion.identity);
-                break;
-            case 3:
-                Instantiate(stone_block, block_placement_pos, Quaternion.identity);
-                break;
-            case 4:
-                Instantiate(iron_block, block_placement_pos, Quaternion.identity);
-                break;
-            case 5:
-                Instantiate(gold_block, block_placement_pos, Quaternion.identity);
-                break;
-            case 6:
-                Instantiate(diamond_block, block_placement_pos, Quaternion.identity);
-                break;
-            default:
-                if (!select_block_text.activeSelf)
-                {
-                    select_block_text.SetActive(true);
-                    select_block_text_disappear_timer = 5.0f;
-                    StartCoroutine(selectBlockTextDisappearCountdown());
-                }
-                break;
+            Vector3 block_placement_pos = player_transform.position + block_placement_offset;
+
+            switch (current_ID)
+            {
+                case 1:
+                    Instantiate(grass_block, block_placement_pos, Quaternion.identity);
+                    break;
+                case 2:
+                    Instantiate(dirt_block, block_placement_pos, Quaternion.identity);
+                    break;
+                case 3:
+                    Instantiate(stone_block, block_placement_pos, Quaternion.identity);
+                    break;
+                case 4:
+                    Instantiate(iron_block, block_placement_pos, Quaternion.identity);
+                    break;
+                case 5:
+                    Instantiate(gold_block, block_placement_pos, Quaternion.identity);
+                    break;
+                case 6:
+                    Instantiate(diamond_block, block_placement_pos, Quaternion.identity);
+                    break;
+                default:
+                    if (!select_block_text.activeSelf)
+                    {
+                        select_block_text.SetActive(true);
+                        select_block_text_disappear_timer = 5.0f;
+                        StartCoroutine(selectBlockTextDisappearCountdown());
+                    }
+                    break;
+            }
+        }
+        else
+        {
+
         }
 
         if (place_block_text != null)

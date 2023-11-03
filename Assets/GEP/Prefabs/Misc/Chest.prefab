@@ -954,7 +954,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39d001f985d314a428c6418b1e540c81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  capacity: 0
+  max_stack: 64
   chest_panel: {fileID: 5390325504909559870}
 --- !u!65 &3671165819177283273
 BoxCollider:
