@@ -275,6 +275,26 @@ public class InventorySystem : MonoBehaviour
         }
     }
 
+    public void transferAll()
+    {
+        if (chest_open)
+        {
+            if (!in_chest)
+            {
+                Debug.Log(item_ids[selected_slot, 1]);
+                for (int i = 0; i < (item_ids[selected_slot, 1] * 2) + 1; i++)
+                {
+                    Debug.Log("transferred");
+                    transferItem();
+                }
+            }
+            else
+            {
+
+            }
+        }
+    }
+
     void updateInventory()
     {
         for (int i = 0; i < item_ids.GetLength(0); i++)

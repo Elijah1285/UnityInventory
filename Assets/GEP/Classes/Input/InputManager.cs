@@ -67,6 +67,11 @@ public class InputManager : MonoBehaviour
         InventorySystem.instance.transferItem();
     }
 
+    public void OnInventoryTransferAll(InputValue value)
+    {
+        InventorySystem.instance.transferAll();
+    }
+
     public void OnChestSwitch(InputValue value)
     {
         InventorySystem.instance.chestSwitch();
