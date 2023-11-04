@@ -15,7 +15,7 @@ public class InventorySystem : MonoBehaviour
     int selected_slot = 0;
     const int inventory_row_length = 9;
     const int inventory_size = 36;
-    float select_block_text_disappear_timer;
+    float select_item_text_disappear_timer;
     bool chest_open = false;
     bool in_chest = false;
     int[,] item_ids = new int[36, 2];
@@ -50,9 +50,10 @@ public class InventorySystem : MonoBehaviour
     [SerializeField] GameObject diamond_block;
     [SerializeField] GameObject snowball;
     [SerializeField] GameObject sword;
-    [SerializeField] GameObject select_block_text;
-    [SerializeField] GameObject place_block_text;
+    [SerializeField] GameObject select_item_text;
+    [SerializeField] GameObject transfer_item_text;
     [SerializeField] GameObject chest_switch_text;
+    [SerializeField] GameObject transfer_all_text;
     [SerializeField] TMP_Text selected_item_text;
 
     private void Awake()
@@ -75,9 +76,9 @@ public class InventorySystem : MonoBehaviour
         {
             inventory_panel.gameObject.SetActive(true);
 
-            if (place_block_text != null)
+            if (transfer_item_text != null)
             {
-                place_block_text.SetActive(true);
+                transfer_item_text.SetActive(true);
             }
         }
         else
@@ -256,10 +257,10 @@ public class InventorySystem : MonoBehaviour
             }
             else
             {
-                if (!select_block_text.activeSelf)
+                if (!select_item_text.activeSelf)
                 {
-                    select_block_text.SetActive(true);
-                    select_block_text_disappear_timer = 5.0f;
+                    select_item_text.SetActive(true);
+                    select_item_text_disappear_timer = 5.0f;
                     StartCoroutine(selectBlockTextDisappearCountdown());
                 }
             }
@@ -269,9 +270,9 @@ public class InventorySystem : MonoBehaviour
             current_chest.transferItem();
         }
 
-        if (place_block_text != null)
+        if (transfer_item_text != null)
         {
-            Destroy(place_block_text);
+            Destroy(transfer_item_text);
         }
     }
 
@@ -495,12 +496,12 @@ public class InventorySystem : MonoBehaviour
 
     IEnumerator selectBlockTextDisappearCountdown()
     {
-        while (select_block_text_disappear_timer > 0)
+        while (select_item_text_disappear_timer > 0)
         {
-            select_block_text_disappear_timer -= Time.deltaTime;
+            select_item_text_disappear_timer -= Time.deltaTime;
             yield return null;
         }
 
-        select_block_text.SetActive(false);
+        select_item_text.SetActive(false);
     }
 }
