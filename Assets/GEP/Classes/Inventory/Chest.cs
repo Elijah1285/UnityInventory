@@ -175,7 +175,10 @@ public class Chest : MonoBehaviour
                 }
                 break;
             case 4:
-                selected_slot += chest_row_length;
+                if (selected_slot < chest_size - chest_row_length)
+                {
+                    selected_slot += chest_row_length;
+                }
                 break;
         }
 
