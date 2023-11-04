@@ -43,6 +43,7 @@ public class InventorySystem : MonoBehaviour
     [SerializeField] GameObject diamond_block;  
     [SerializeField] GameObject select_block_text;
     [SerializeField] GameObject place_block_text;
+    [SerializeField] GameObject chest_switch_text;
     [SerializeField] TMP_Text selected_item_text;
 
     private void Awake()
@@ -84,6 +85,11 @@ public class InventorySystem : MonoBehaviour
         selected_item_text.gameObject.SetActive(false);
         current_chest = chest;
         current_chest.enterChest();
+
+        if (chest_switch_text != null)
+        {
+            chest_switch_text.SetActive(true);
+        }
     }
 
     public void exitChest()
@@ -103,18 +109,26 @@ public class InventorySystem : MonoBehaviour
 
     public void chestSwitch()
     {
-        in_chest = !in_chest;
-
-        if (!in_chest)
+        if (chest_open)
         {
-            slot_selector.gameObject.SetActive(true);
-        }
-        else
-        {
-            slot_selector.gameObject.SetActive(false);
-        }
+            in_chest = !in_chest;
 
-        current_chest.chestSwitch();
+            if (!in_chest)
+            {
+                slot_selector.gameObject.SetActive(true);
+            }
+            else
+            {
+                slot_selector.gameObject.SetActive(false);
+            }
+
+            current_chest.chestSwitch();
+
+            if (chest_switch_text != null)
+            {
+                Destroy(chest_switch_text);
+            }
+        }
     }
 
     public bool addItem(int item_id)
