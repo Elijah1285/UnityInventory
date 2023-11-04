@@ -13475,7 +13475,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Select a block before trying to place it
+  m_text: 'Select a block before trying to transfer it
 
 '
   m_isRightToLeft: 0

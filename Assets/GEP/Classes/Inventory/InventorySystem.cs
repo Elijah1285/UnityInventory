@@ -315,56 +315,55 @@ public class InventorySystem : MonoBehaviour
                     item_ids[selected_slot, 0] = 0;
                     updateSelectedItemText();
                 }
-            }
 
-            updateInventory();
-            updateNextEmptySlot();
 
-            if (!chest_open)
-            {
-                Vector3 block_placement_pos = player_transform.position + block_placement_offset;
+                updateInventory();
+                updateNextEmptySlot();
 
-                switch (current_ID)
+                if (!chest_open)
                 {
-                    case 1:
-                        Instantiate(grass_block, block_placement_pos, Quaternion.identity);
-                        break;
-                    case 2:
-                        Instantiate(dirt_block, block_placement_pos, Quaternion.identity);
-                        break;
-                    case 3:
-                        Instantiate(stone_block, block_placement_pos, Quaternion.identity);
-                        break;
-                    case 4:
-                        Instantiate(iron_block, block_placement_pos, Quaternion.identity);
-                        break;
-                    case 5:
-                        Instantiate(gold_block, block_placement_pos, Quaternion.identity);
-                        break;
-                    case 6:
-                        Instantiate(diamond_block, block_placement_pos, Quaternion.identity);
-                        break;
-                    default:
-                        if (!select_block_text.activeSelf)
-                        {
-                            select_block_text.SetActive(true);
-                            select_block_text_disappear_timer = 5.0f;
-                            StartCoroutine(selectBlockTextDisappearCountdown());
-                        }
-                        break;
+                    Vector3 block_placement_pos = player_transform.position + block_placement_offset;
+
+                    switch (current_ID)
+                    {
+                        case 1:
+                            Instantiate(grass_block, block_placement_pos, Quaternion.identity);
+                            break;
+                        case 2:
+                            Instantiate(dirt_block, block_placement_pos, Quaternion.identity);
+                            break;
+                        case 3:
+                            Instantiate(stone_block, block_placement_pos, Quaternion.identity);
+                            break;
+                        case 4:
+                            Instantiate(iron_block, block_placement_pos, Quaternion.identity);
+                            break;
+                        case 5:
+                            Instantiate(gold_block, block_placement_pos, Quaternion.identity);
+                            break;
+                        case 6:
+                            Instantiate(diamond_block, block_placement_pos, Quaternion.identity);
+                            break;
+                    }
+                }
+                else
+                {
+                    current_chest.addItem(current_ID);
+                }
+
+                if (place_block_text != null)
+                {
+                    Destroy(place_block_text);
                 }
             }
             else
             {
-                if (current_ID != 0)
+                if (!select_block_text.activeSelf)
                 {
-                    current_chest.addItem(current_ID);
+                    select_block_text.SetActive(true);
+                    select_block_text_disappear_timer = 5.0f;
+                    StartCoroutine(selectBlockTextDisappearCountdown());
                 }
-            }
-
-            if (place_block_text != null)
-            {
-                Destroy(place_block_text);
             }
         }
         else
