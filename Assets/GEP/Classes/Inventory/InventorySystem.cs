@@ -294,7 +294,7 @@ public class InventorySystem : MonoBehaviour
         }
     }
 
-    public void placeItem()
+    public void transferItem()
     {
         int current_ID = item_ids[selected_slot, 0];
 
