@@ -79,6 +79,32 @@ public class Chest : MonoBehaviour
         return false;
     }
 
+    public void transferItem()
+    {
+        int current_ID = item_ids[selected_slot, 0];
+
+        if (item_ids[selected_slot, 1] > 0)
+        {
+            item_ids[selected_slot, 1]--;
+            GameObject item_count = chest_numbers.GetChild(selected_slot).gameObject;
+            item_count.GetComponent<TMP_Text>().text = item_ids[selected_slot, 1].ToString();
+
+            if (item_ids[selected_slot, 1] == 1)
+            {
+                item_count.SetActive(false);
+            }
+            else if (item_ids[selected_slot, 1] <= 0)
+            {
+                item_ids[selected_slot, 0] = 0;
+            }
+        }
+
+        updateChest();
+        updateNextEmptySlot();
+
+        InventorySystem.instance.addItem(current_ID);
+    }
+
     void updateChest()
     {
         for (int i = 0; i < item_ids.GetLength(0); i++)
