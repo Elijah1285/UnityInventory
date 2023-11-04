@@ -23,7 +23,12 @@ public class InventorySystem : MonoBehaviour
     Vector3 block_placement_offset = new Vector3(0.0f, 0.5f, 1.0f);
 
 
-    [SerializeField] int max_stack;
+    [SerializeField] int max_stack_A;
+    [SerializeField] int max_stack_B;
+    [SerializeField] int max_stack_C;
+    [SerializeField] int[] ids_A;
+    [SerializeField] int[] ids_B;
+    [SerializeField] int[] ids_C;
     [SerializeField] Transform player_transform;
     [SerializeField] Canvas inventory_panel;
     [SerializeField] RectTransform inventory_slots;
@@ -138,6 +143,42 @@ public class InventorySystem : MonoBehaviour
 
     public bool addItem(int item_id)
     {
+        int max_stack = 0;
+        bool set_max_stack = false;
+
+        for (int i = 0; i < ids_A.Length; i++)
+        {
+            if (ids_A[i] == item_id)
+            {
+                max_stack = max_stack_A;
+                set_max_stack = true;
+            }
+        }
+
+        if (!set_max_stack)
+        {
+            for (int i = 0; i < ids_B.Length; i++)
+            {
+                if (ids_B[i] == item_id)
+                {
+                    max_stack = max_stack_B;
+                    set_max_stack = true;
+                }
+            }
+        }
+
+        if (!set_max_stack)
+        {
+            for (int i = 0; i < ids_C.Length; i++)
+            {
+                if (ids_C[i] == item_id)
+                {
+                    max_stack = max_stack_C;
+                    set_max_stack = true;
+                }
+            }
+        }
+
         for (int i = 0; i < item_ids.GetLength(0); i++)
         {
             if (item_id == item_ids[i, 0] && item_ids[i, 1] < max_stack)

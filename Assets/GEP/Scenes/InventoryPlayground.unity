@@ -2839,7 +2839,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbfcd43c445539c408bbc4f95ce52b90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  max_stack: 64
+  max_stack_A: 64
+  max_stack_B: 16
+  max_stack_C: 1
+  ids_A: 010000000200000003000000040000000500000006000000
+  ids_B: 07000000
+  ids_C: 08000000
   player_transform: {fileID: 1790312036}
   inventory_panel: {fileID: 1479499809}
   inventory_slots: {fileID: 298741382}
