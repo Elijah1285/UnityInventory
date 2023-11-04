@@ -100,6 +100,11 @@ public class InventorySystem : MonoBehaviour
         {
             chest_switch_text.SetActive(true);
         }
+
+        if (transfer_all_text != null)
+        {
+            transfer_all_text.SetActive(true);
+        }
     }
 
     public void exitChest()
