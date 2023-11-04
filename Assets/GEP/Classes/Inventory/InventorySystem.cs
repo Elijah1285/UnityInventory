@@ -40,12 +40,16 @@ public class InventorySystem : MonoBehaviour
     [SerializeField] Sprite iron_icon;
     [SerializeField] Sprite gold_icon;
     [SerializeField] Sprite diamond_icon;
+    [SerializeField] Sprite snowball_icon;
+    [SerializeField] Sprite sword_icon;
     [SerializeField] GameObject grass_block;
     [SerializeField] GameObject dirt_block;
     [SerializeField] GameObject stone_block;
     [SerializeField] GameObject iron_block;
     [SerializeField] GameObject gold_block;
-    [SerializeField] GameObject diamond_block;  
+    [SerializeField] GameObject diamond_block;
+    [SerializeField] GameObject snowball;
+    [SerializeField] GameObject sword;
     [SerializeField] GameObject select_block_text;
     [SerializeField] GameObject place_block_text;
     [SerializeField] GameObject chest_switch_text;
@@ -249,6 +253,14 @@ public class InventorySystem : MonoBehaviour
                     inventory_slots.GetChild(i).GetComponent<Image>().sprite = diamond_icon;
                     inventory_slots.GetChild(i).GetComponent<Image>().enabled = true;
                     break;
+                case 7:
+                    inventory_slots.GetChild(i).GetComponent<Image>().sprite = snowball_icon;
+                    inventory_slots.GetChild(i).GetComponent<Image>().enabled = true;
+                    break;
+                case 8:
+                    inventory_slots.GetChild(i).GetComponent<Image>().sprite = sword_icon;
+                    inventory_slots.GetChild(i).GetComponent<Image>().enabled = true;
+                    break;
                 default:
                     inventory_slots.GetChild(i).GetComponent<Image>().sprite = null;
                     inventory_slots.GetChild(i).GetComponent<Image>().enabled = false;
@@ -283,6 +295,12 @@ public class InventorySystem : MonoBehaviour
                 break;
             case 6:
                 selected_item_text.text = "Diamond:\nThe strongest and most precious resource";
+                break;
+            case 7:
+                selected_item_text.text = "Snowball:\nGreat for a snowball fight";
+                break;
+            case 8:
+                selected_item_text.text = "Sword:\nGreat for a swordfight";
                 break;
             default:
                 selected_item_text.text = "";
@@ -385,27 +403,33 @@ public class InventorySystem : MonoBehaviour
 
                 if (!chest_open)
                 {
-                    Vector3 block_placement_pos = player_transform.position + block_placement_offset;
+                    Vector3 item_placement_pos = player_transform.position + block_placement_offset;
 
                     switch (current_ID)
                     {
                         case 1:
-                            Instantiate(grass_block, block_placement_pos, Quaternion.identity);
+                            Instantiate(grass_block, item_placement_pos, Quaternion.identity);
                             break;
                         case 2:
-                            Instantiate(dirt_block, block_placement_pos, Quaternion.identity);
+                            Instantiate(dirt_block, item_placement_pos, Quaternion.identity);
                             break;
                         case 3:
-                            Instantiate(stone_block, block_placement_pos, Quaternion.identity);
+                            Instantiate(stone_block, item_placement_pos, Quaternion.identity);
                             break;
                         case 4:
-                            Instantiate(iron_block, block_placement_pos, Quaternion.identity);
+                            Instantiate(iron_block, item_placement_pos, Quaternion.identity);
                             break;
                         case 5:
-                            Instantiate(gold_block, block_placement_pos, Quaternion.identity);
+                            Instantiate(gold_block, item_placement_pos, Quaternion.identity);
                             break;
                         case 6:
-                            Instantiate(diamond_block, block_placement_pos, Quaternion.identity);
+                            Instantiate(diamond_block, item_placement_pos, Quaternion.identity);
+                            break;
+                        case 7:
+                            Instantiate(snowball, item_placement_pos, Quaternion.identity);
+                            break;
+                        case 8:
+                            Instantiate(sword, item_placement_pos, Quaternion.identity);
                             break;
                     }
                 }
