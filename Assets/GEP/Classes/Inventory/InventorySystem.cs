@@ -104,6 +104,11 @@ public class InventorySystem : MonoBehaviour
             selected_item_text.gameObject.SetActive(true);
             current_chest.exitChest();
             current_chest = null;
+
+            if (chest_switch_text != null)
+            {
+                chest_switch_text.SetActive(false);
+            }
         }
     }
 
