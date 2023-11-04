@@ -108,6 +108,16 @@ public class Chest : MonoBehaviour
         }
     }
 
+    public void transferAll()
+    {
+        Debug.Log(item_ids[selected_slot, 1]);
+        for (int i = 0; i < (item_ids[selected_slot, 1] * 2) + 1; i++)
+        {
+            Debug.Log("transferred");
+            transferItem();
+        }
+    }
+
     void updateChest()
     {
         for (int i = 0; i < item_ids.GetLength(0); i++)

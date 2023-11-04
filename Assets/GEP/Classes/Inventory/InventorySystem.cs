@@ -290,7 +290,7 @@ public class InventorySystem : MonoBehaviour
             }
             else
             {
-
+                current_chest.transferAll();
             }
         }
     }
