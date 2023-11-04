@@ -356,7 +356,10 @@ public class InventorySystem : MonoBehaviour
             }
             else
             {
+                if (current_ID != 0)
+                {
                     current_chest.addItem(current_ID);
+                }
             }
 
             if (place_block_text != null)

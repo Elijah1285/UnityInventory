@@ -83,6 +83,7 @@ public class Chest : MonoBehaviour
     {
         int current_ID = item_ids[selected_slot, 0];
 
+
         if (item_ids[selected_slot, 1] > 0)
         {
             item_ids[selected_slot, 1]--;
@@ -97,12 +98,13 @@ public class Chest : MonoBehaviour
             {
                 item_ids[selected_slot, 0] = 0;
             }
+
+
+            updateChest();
+            updateNextEmptySlot();
+
+            InventorySystem.instance.addItem(current_ID);
         }
-
-        updateChest();
-        updateNextEmptySlot();
-
-        InventorySystem.instance.addItem(current_ID);
     }
 
     void updateChest()
