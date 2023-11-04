@@ -88,14 +88,17 @@ public class InventorySystem : MonoBehaviour
 
     public void exitChest()
     {
-        chest_open = false;
-        in_chest = false;
-        slot_selector.gameObject.SetActive(true);
+        if (current_chest != null)
+        {
+            chest_open = false;
+            in_chest = false;
+            slot_selector.gameObject.SetActive(true);
 
-        inventory_panel.transform.GetChild(0).localPosition = new Vector3(0, -35f, 0);
-        selected_item_text.gameObject.SetActive(true);
-        current_chest.exitChest();
-        current_chest = null;
+            inventory_panel.transform.GetChild(0).localPosition = new Vector3(0, -35f, 0);
+            selected_item_text.gameObject.SetActive(true);
+            current_chest.exitChest();
+            current_chest = null;
+        }
     }
 
     public void chestSwitch()
@@ -350,11 +353,6 @@ public class InventorySystem : MonoBehaviour
                 {
                     current_chest.addItem(current_ID);
                 }
-
-                if (place_block_text != null)
-                {
-                    Destroy(place_block_text);
-                }
             }
             else
             {
@@ -369,6 +367,11 @@ public class InventorySystem : MonoBehaviour
         else
         {
             current_chest.transferItem();
+        }
+
+        if (place_block_text != null)
+        {
+            Destroy(place_block_text);
         }
     }
 
