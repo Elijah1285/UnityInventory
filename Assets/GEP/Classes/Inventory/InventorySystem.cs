@@ -147,41 +147,7 @@ public class InventorySystem : MonoBehaviour
 
     public bool addItem(int item_id)
     {
-        int max_stack = 0;
-        bool set_max_stack = false;
-
-        for (int i = 0; i < ids_A.Length; i++)
-        {
-            if (ids_A[i] == item_id)
-            {
-                max_stack = max_stack_A;
-                set_max_stack = true;
-            }
-        }
-
-        if (!set_max_stack)
-        {
-            for (int i = 0; i < ids_B.Length; i++)
-            {
-                if (ids_B[i] == item_id)
-                {
-                    max_stack = max_stack_B;
-                    set_max_stack = true;
-                }
-            }
-        }
-
-        if (!set_max_stack)
-        {
-            for (int i = 0; i < ids_C.Length; i++)
-            {
-                if (ids_C[i] == item_id)
-                {
-                    max_stack = max_stack_C;
-                    set_max_stack = true;
-                }
-            }
-        }
+        int max_stack = calculateMaxStack(item_id);
 
         for (int i = 0; i < item_ids.GetLength(0); i++)
         {
@@ -221,6 +187,92 @@ public class InventorySystem : MonoBehaviour
         }
 
         return false;
+    }
+
+    public void transferItem()
+    {
+        if (!in_chest)
+        {
+            int current_ID = item_ids[selected_slot, 0];
+
+            if (item_ids[selected_slot, 1] > 0)
+            {
+                item_ids[selected_slot, 1]--;
+                GameObject item_count = inventory_numbers.GetChild(selected_slot).gameObject;
+                item_count.GetComponent<TMP_Text>().text = item_ids[selected_slot, 1].ToString();
+
+                if (item_ids[selected_slot, 1] == 1)
+                {
+                    item_count.SetActive(false);
+                }
+                else if (item_ids[selected_slot, 1] <= 0)
+                {
+                    item_ids[selected_slot, 0] = 0;
+                    updateSelectedItemText();
+                }
+
+
+                updateInventory();
+                updateNextEmptySlot();
+
+                if (!chest_open)
+                {
+                    Vector3 item_placement_pos = player_transform.position + block_placement_offset;
+
+                    switch (current_ID)
+                    {
+                        case 1:
+                            Instantiate(grass_block, item_placement_pos, Quaternion.identity);
+                            break;
+                        case 2:
+                            Instantiate(dirt_block, item_placement_pos, Quaternion.identity);
+                            break;
+                        case 3:
+                            Instantiate(stone_block, item_placement_pos, Quaternion.identity);
+                            break;
+                        case 4:
+                            Instantiate(iron_block, item_placement_pos, Quaternion.identity);
+                            break;
+                        case 5:
+                            Instantiate(gold_block, item_placement_pos, Quaternion.identity);
+                            break;
+                        case 6:
+                            Instantiate(diamond_block, item_placement_pos, Quaternion.identity);
+                            break;
+                        case 7:
+                            Instantiate(snowball, item_placement_pos, Quaternion.identity);
+                            break;
+                        case 8:
+                            Instantiate(sword, item_placement_pos, Quaternion.identity);
+                            break;
+                    }
+                }
+                else
+                {
+                    int max_stack = calculateMaxStack(current_ID);
+
+                    current_chest.addItem(current_ID, max_stack);
+                }
+            }
+            else
+            {
+                if (!select_block_text.activeSelf)
+                {
+                    select_block_text.SetActive(true);
+                    select_block_text_disappear_timer = 5.0f;
+                    StartCoroutine(selectBlockTextDisappearCountdown());
+                }
+            }
+        }
+        else
+        {
+            current_chest.transferItem();
+        }
+
+        if (place_block_text != null)
+        {
+            Destroy(place_block_text);
+        }
     }
 
     void updateInventory()
@@ -375,93 +427,50 @@ public class InventorySystem : MonoBehaviour
         }
     }
 
-    public void transferItem()
-    {
-        if (!in_chest)
-        {
-            int current_ID = item_ids[selected_slot, 0];
-
-            if (item_ids[selected_slot, 1] > 0)
-            {
-                item_ids[selected_slot, 1]--;
-                GameObject item_count = inventory_numbers.GetChild(selected_slot).gameObject;
-                item_count.GetComponent<TMP_Text>().text = item_ids[selected_slot, 1].ToString();
-
-                if (item_ids[selected_slot, 1] == 1)
-                {
-                    item_count.SetActive(false);
-                }
-                else if (item_ids[selected_slot, 1] <= 0)
-                {
-                    item_ids[selected_slot, 0] = 0;
-                    updateSelectedItemText();
-                }
-
-
-                updateInventory();
-                updateNextEmptySlot();
-
-                if (!chest_open)
-                {
-                    Vector3 item_placement_pos = player_transform.position + block_placement_offset;
-
-                    switch (current_ID)
-                    {
-                        case 1:
-                            Instantiate(grass_block, item_placement_pos, Quaternion.identity);
-                            break;
-                        case 2:
-                            Instantiate(dirt_block, item_placement_pos, Quaternion.identity);
-                            break;
-                        case 3:
-                            Instantiate(stone_block, item_placement_pos, Quaternion.identity);
-                            break;
-                        case 4:
-                            Instantiate(iron_block, item_placement_pos, Quaternion.identity);
-                            break;
-                        case 5:
-                            Instantiate(gold_block, item_placement_pos, Quaternion.identity);
-                            break;
-                        case 6:
-                            Instantiate(diamond_block, item_placement_pos, Quaternion.identity);
-                            break;
-                        case 7:
-                            Instantiate(snowball, item_placement_pos, Quaternion.identity);
-                            break;
-                        case 8:
-                            Instantiate(sword, item_placement_pos, Quaternion.identity);
-                            break;
-                    }
-                }
-                else
-                {
-                    current_chest.addItem(current_ID);
-                }
-            }
-            else
-            {
-                if (!select_block_text.activeSelf)
-                {
-                    select_block_text.SetActive(true);
-                    select_block_text_disappear_timer = 5.0f;
-                    StartCoroutine(selectBlockTextDisappearCountdown());
-                }
-            }
-        }
-        else
-        {
-            current_chest.transferItem();
-        }
-
-        if (place_block_text != null)
-        {
-            Destroy(place_block_text);
-        }
-    }
-
     public bool getChestOpen()
     {
         return chest_open;
+    }
+
+    int calculateMaxStack(int item_id)
+    {
+        int max_stack = 0;
+        bool set_max_stack = false;
+
+        for (int i = 0; i < ids_A.Length; i++)
+        {
+            if (ids_A[i] == item_id)
+            {
+                max_stack = max_stack_A;
+                set_max_stack = true;
+            }
+        }
+
+        if (!set_max_stack)
+        {
+            for (int i = 0; i < ids_B.Length; i++)
+            {
+                if (ids_B[i] == item_id)
+                {
+                    max_stack = max_stack_B;
+                    set_max_stack = true;
+                }
+            }
+        }
+
+        if (!set_max_stack)
+        {
+            for (int i = 0; i < ids_C.Length; i++)
+            {
+                if (ids_C[i] == item_id)
+                {
+                    max_stack = max_stack_C;
+                    set_max_stack = true;
+                }
+            }
+        }
+
+        return max_stack;
     }
 
     IEnumerator selectBlockTextDisappearCountdown()

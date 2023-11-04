@@ -966,6 +966,8 @@ MonoBehaviour:
   iron_icon: {fileID: 21300000, guid: 920efe01794a12e43acb648b6a288bb0, type: 3}
   gold_icon: {fileID: 21300000, guid: dcf1ebb6a4ed27749b70083382932a94, type: 3}
   diamond_icon: {fileID: 21300000, guid: 59881276c4cc9384eb47126b0a5b7857, type: 3}
+  snowball_icon: {fileID: 21300000, guid: 60783632c1012fb40bdb65c95089e3bb, type: 3}
+  sword_icon: {fileID: 21300000, guid: 9249ea87d7a9eb6438a1a81070efe176, type: 3}
 --- !u!65 &3671165819177283273
 BoxCollider:
   m_ObjectHideFlags: 0

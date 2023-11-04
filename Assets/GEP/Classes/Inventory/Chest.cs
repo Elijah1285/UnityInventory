@@ -14,7 +14,6 @@ public class Chest : MonoBehaviour
     int[,] item_ids = new int[18, 2];
     const int chest_size = 18;
 
-    [SerializeField] int max_stack;
     [SerializeField] Canvas chest_panel;
     [SerializeField] RectTransform chest_numbers;
     [SerializeField] RectTransform chest_slots;
@@ -25,6 +24,8 @@ public class Chest : MonoBehaviour
     [SerializeField] Sprite iron_icon;
     [SerializeField] Sprite gold_icon;
     [SerializeField] Sprite diamond_icon;
+    [SerializeField] Sprite snowball_icon;
+    [SerializeField] Sprite sword_icon;
 
     public void enterChest()
     {
@@ -42,7 +43,7 @@ public class Chest : MonoBehaviour
         chest_panel.gameObject.SetActive(false);
     }
 
-    public bool addItem(int item_id)
+    public bool addItem(int item_id, int max_stack)
     {
         for (int i = 0; i < item_ids.GetLength(0); i++)
         {
@@ -135,6 +136,14 @@ public class Chest : MonoBehaviour
                     break;
                 case 6:
                     chest_slots.GetChild(i).GetComponent<Image>().sprite = diamond_icon;
+                    chest_slots.GetChild(i).GetComponent<Image>().enabled = true;
+                    break;
+                case 7:
+                    chest_slots.GetChild(i).GetComponent<Image>().sprite = snowball_icon;
+                    chest_slots.GetChild(i).GetComponent<Image>().enabled = true;
+                    break;
+                case 8:
+                    chest_slots.GetChild(i).GetComponent<Image>().sprite = sword_icon;
                     chest_slots.GetChild(i).GetComponent<Image>().enabled = true;
                     break;
                 default:
