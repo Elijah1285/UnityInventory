@@ -252,33 +252,44 @@ public class InventorySystem : MonoBehaviour
 
     public void moveSlotSelector(int direction)
     {
-        switch (direction)
+        if (!in_chest)
         {
-            case 1:
-                if (selected_slot > 0)
-                {
-                    selected_slot--;
-                }
-                break;
-            case 2:
-                if (selected_slot < inventory_size - 1)
-                {
-                    selected_slot++;
-                }
-                break;
-            case 3:
-                if (selected_slot > inventory_row_length - 1)
-                {
-                    selected_slot -= inventory_row_length;
-                }
-                break;
-            case 4:
-                selected_slot += inventory_row_length;
-                break;
-        }
+            switch (direction)
+            {
+                case 1:
+                    if (selected_slot > 0)
+                    {
+                        selected_slot--;
+                    }
+                    break;
+                case 2:
 
-        updateSlotSelector();
-        updateSelectedItemText();
+                    if (selected_slot < inventory_size - 1)
+                    {
+                        selected_slot++;
+                    }
+                    break;
+                case 3:
+                    if (selected_slot > inventory_row_length - 1)
+                    {
+                        selected_slot -= inventory_row_length;
+                    }
+                    break;
+                case 4:
+                    if (selected_slot < inventory_size - inventory_row_length)
+                    {
+                        selected_slot += inventory_row_length;
+                    }
+                    break;
+            }
+
+            updateSlotSelector();
+            updateSelectedItemText();
+        }
+        else
+        {
+            current_chest.moveSlotSelector(direction);
+        }
     }
 
     public void placeItem()

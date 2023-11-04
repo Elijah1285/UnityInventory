@@ -6,12 +6,13 @@ using TMPro;
 
 public class Chest : MonoBehaviour
 {
-    const int row_length = 9;
+    const int chest_row_length = 9;
     int next_empty_slot = 0;
     int selected_slot = 0;
     bool chest_open = false;
     bool in_chest = false;
     int[,] item_ids = new int[18, 2];
+    const int chest_size = 18;
 
     [SerializeField] int max_stack;
     [SerializeField] Canvas chest_panel;
@@ -146,5 +147,43 @@ public class Chest : MonoBehaviour
         {
             slot_selector.gameObject.SetActive(false);
         }
+    }
+
+    public void moveSlotSelector(int direction)
+    {
+        switch (direction)
+        {
+            case 1:
+                if (selected_slot > 0)
+                {
+                    selected_slot--;
+                }
+
+                break;
+            case 2:
+
+                if (selected_slot < chest_size - 1)
+                {
+                    selected_slot++;
+                }
+
+                break;
+            case 3:
+                if (selected_slot > chest_row_length - 1)
+                {
+                    selected_slot -= chest_row_length;
+                }
+                break;
+            case 4:
+                selected_slot += chest_row_length;
+                break;
+        }
+
+        updateSlotSelector();
+    }
+
+    void updateSlotSelector()
+    {
+        slot_selector.position = chest_slots.GetChild(selected_slot).position;
     }
 }
