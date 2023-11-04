@@ -36,6 +36,8 @@ public class Chest : MonoBehaviour
     public void exitChest()
     {
         chest_open = false;
+        in_chest = false;
+        slot_selector.gameObject.SetActive(false);
 
         chest_panel.gameObject.SetActive(false);
     }

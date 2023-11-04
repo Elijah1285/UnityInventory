@@ -89,6 +89,8 @@ public class InventorySystem : MonoBehaviour
     public void exitChest()
     {
         chest_open = false;
+        in_chest = false;
+        slot_selector.gameObject.SetActive(true);
 
         inventory_panel.transform.GetChild(0).localPosition = new Vector3(0, -35f, 0);
         selected_item_text.gameObject.SetActive(true);
