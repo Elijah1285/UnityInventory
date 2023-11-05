@@ -110,10 +110,12 @@ public class Chest : MonoBehaviour
 
     public void transferAll()
     {
-        for (int i = 0; i < (item_ids[selected_slot, 1] * 2) + 1; i++)
+        for (int i = 0; i < item_ids[selected_slot, 1]; i++)
         {
             transferItem();
         }
+
+        updateChest();
     }
 
     void updateChest()
