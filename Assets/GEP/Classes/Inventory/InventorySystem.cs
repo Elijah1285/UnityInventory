@@ -285,30 +285,12 @@ public class InventorySystem : MonoBehaviour
     {
         if (chest_open)
         {
-            int current_ID = item_ids[selected_slot, 0];
-            int max_stack = calculateMaxStack(current_ID);
-
             if (!in_chest)
             {
                 int item_count = item_ids[selected_slot, 1];
 
                 for (int i = 0; i < item_count; i++)
                 {
-                    //item_ids[selected_slot, 1]--;
-                    //GameObject item_count = inventory_numbers.GetChild(selected_slot).gameObject;
-                    //item_count.GetComponent<TMP_Text>().text = item_ids[selected_slot, 1].ToString();
-
-                    //if (item_ids[selected_slot, 1] == 1)
-                    //{
-                    //    item_count.SetActive(false);
-                    //}
-                    //else if (item_ids[selected_slot, 1] <= 0)
-                    //{
-                    //    item_ids[selected_slot, 0] = 0;
-                    //    updateSelectedItemText();
-                    //}
-
-                    //current_chest.addItem(current_ID, max_stack);
                     transferItem();
                 }
             }
