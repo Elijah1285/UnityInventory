@@ -470,6 +470,28 @@ public class InventorySystem : MonoBehaviour
         return chest_open;
     }
 
+    bool checkIfFreeSpace(int item_id)
+    {
+        bool free_space = 0;
+        int max_stack = calculateMaxStack(item_id);
+
+        for (int i = 0; i < item_ids.Length; i++)
+        {
+            if (item_ids[i, 0] = item_id)
+            {
+                if (item_ids[i, 1] < max_stack)
+                {
+                    free_space = true;
+                    break;
+                }
+            }
+            else
+            {
+
+            }
+        }
+    }
+
     int calculateMaxStack(int item_id)
     {
         int max_stack = 0;
