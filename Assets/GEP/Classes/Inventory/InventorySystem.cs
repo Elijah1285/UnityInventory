@@ -298,9 +298,16 @@ public class InventorySystem : MonoBehaviour
             {
                 int item_count = item_ids[selected_slot, 1];
 
-                for (int i = 0; i < item_count; i++)
+                if (item_count > 0)
                 {
-                    transferItem();
+                    for (int i = 0; i < item_count; i++)
+                    {
+                        transferItem();
+                    }
+                }
+                else
+                {
+                    selectItemWarning();
                 }
             }
             else
@@ -313,6 +320,11 @@ public class InventorySystem : MonoBehaviour
             if (transfer_all_text != null)
             {
                 Destroy(transfer_all_text);
+            }
+
+            if (transfer_item_text != null)
+            {
+                Destroy(transfer_item_text);
             }
         }
     }
