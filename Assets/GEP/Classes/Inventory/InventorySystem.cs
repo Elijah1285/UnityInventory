@@ -124,6 +124,11 @@ public class InventorySystem : MonoBehaviour
             {
                 chest_switch_text.SetActive(false);
             }
+
+            if (transfer_all_text != null)
+            {
+                transfer_all_text.SetActive(false);
+            }
         }
     }
 
