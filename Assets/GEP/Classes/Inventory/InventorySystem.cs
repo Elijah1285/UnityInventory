@@ -208,24 +208,7 @@ public class InventorySystem : MonoBehaviour
         {
             if (item_ids[selected_slot, 1] > 0)
             {
-                item_ids[selected_slot, 1]--;
-                GameObject item_count = inventory_numbers.GetChild(selected_slot).gameObject;
-                item_count.GetComponent<TMP_Text>().text = item_ids[selected_slot, 1].ToString();
-
-                if (item_ids[selected_slot, 1] == 1)
-                {
-                    item_count.SetActive(false);
-                }
-                else if (item_ids[selected_slot, 1] <= 0)
-                {
-                    item_ids[selected_slot, 0] = 0;
-                    updateSelectedItemText();
-                }
-
-
-                updateInventory();
-                updateNextEmptySlot();
-
+                removeItem();
 
                 Vector3 item_placement_pos = player_transform.position + block_placement_offset;
 
@@ -266,6 +249,10 @@ public class InventorySystem : MonoBehaviour
                 {
                     current_chest.transferItem();
                 }
+                else
+                {
+                    Debug.Log("inventory full");
+                }
             }
             else
             {
@@ -273,6 +260,8 @@ public class InventorySystem : MonoBehaviour
 
                 if (current_chest.checkIfFreeSpace(current_ID, max_stack))
                 {
+                    removeItem();
+
                     current_chest.addItem(current_ID, max_stack);
                 }
                 else
@@ -293,7 +282,8 @@ public class InventorySystem : MonoBehaviour
             }
         }
 
-
+        updateInventory();
+        updateNextEmptySlot();
     }
 
     public void transferAll()
@@ -478,6 +468,23 @@ public class InventorySystem : MonoBehaviour
     public bool getChestOpen()
     {
         return chest_open;
+    }
+
+    void removeItem()
+    {
+        item_ids[selected_slot, 1]--;
+        GameObject item_count = inventory_numbers.GetChild(selected_slot).gameObject;
+        item_count.GetComponent<TMP_Text>().text = item_ids[selected_slot, 1].ToString();
+
+        if (item_ids[selected_slot, 1] == 1)
+        {
+            item_count.SetActive(false);
+        }
+        else if (item_ids[selected_slot, 1] <= 0)
+        {
+            item_ids[selected_slot, 0] = 0;
+            updateSelectedItemText();
+        }
     }
 
     bool checkIfFreeSpace(int item_id)
