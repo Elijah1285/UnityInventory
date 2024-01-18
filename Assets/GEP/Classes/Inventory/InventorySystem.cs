@@ -202,10 +202,10 @@ public class InventorySystem : MonoBehaviour
 
     public void transferItem()
     {
-        if (!in_chest)
-        {
-            int current_ID = item_ids[selected_slot, 0];
+        int current_ID = item_ids[selected_slot, 0];
 
+        if (!chest_open)
+        {
             if (item_ids[selected_slot, 1] > 0)
             {
                 item_ids[selected_slot, 1]--;
@@ -226,64 +226,74 @@ public class InventorySystem : MonoBehaviour
                 updateInventory();
                 updateNextEmptySlot();
 
-                if (!chest_open)
-                {
-                    Vector3 item_placement_pos = player_transform.position + block_placement_offset;
 
-                    switch (current_ID)
-                    {
-                        case 1:
-                            Instantiate(grass_block, item_placement_pos, Quaternion.identity);
-                            break;
-                        case 2:
-                            Instantiate(dirt_block, item_placement_pos, Quaternion.identity);
-                            break;
-                        case 3:
-                            Instantiate(stone_block, item_placement_pos, Quaternion.identity);
-                            break;
-                        case 4:
-                            Instantiate(iron_block, item_placement_pos, Quaternion.identity);
-                            break;
-                        case 5:
-                            Instantiate(gold_block, item_placement_pos, Quaternion.identity);
-                            break;
-                        case 6:
-                            Instantiate(diamond_block, item_placement_pos, Quaternion.identity);
-                            break;
-                        case 7:
-                            Instantiate(snowball, item_placement_pos, Quaternion.identity);
-                            break;
-                        case 8:
-                            Instantiate(sword, item_placement_pos, Quaternion.identity);
-                            break;
-                    }
+                Vector3 item_placement_pos = player_transform.position + block_placement_offset;
+
+                switch (current_ID)
+                {
+                    case 1:
+                        Instantiate(grass_block, item_placement_pos, Quaternion.identity);
+                        break;
+                    case 2:
+                        Instantiate(dirt_block, item_placement_pos, Quaternion.identity);
+                        break;
+                    case 3:
+                        Instantiate(stone_block, item_placement_pos, Quaternion.identity);
+                        break;
+                    case 4:
+                        Instantiate(iron_block, item_placement_pos, Quaternion.identity);
+                        break;
+                    case 5:
+                        Instantiate(gold_block, item_placement_pos, Quaternion.identity);
+                        break;
+                    case 6:
+                        Instantiate(diamond_block, item_placement_pos, Quaternion.identity);
+                        break;
+                    case 7:
+                        Instantiate(snowball, item_placement_pos, Quaternion.identity);
+                        break;
+                    case 8:
+                        Instantiate(sword, item_placement_pos, Quaternion.identity);
+                        break;
                 }
-                else
+            }   
+        }
+        else
+        {
+            if (in_chest)
+            {
+                if (checkIfFreeSpace(current_ID))
                 {
-                    int max_stack = calculateMaxStack(current_ID);
-
-                    current_chest.addItem(current_ID, max_stack);
+                    current_chest.transferItem();
                 }
             }
             else
             {
-                if (!select_item_text.activeSelf)
+                int max_stack = calculateMaxStack(current_ID);
+
+                if (current_chest.checkIfFreeSpace(current_ID, max_stack))
                 {
-                    select_item_text.SetActive(true);
-                    select_item_text_disappear_timer = 5.0f;
-                    StartCoroutine(selectBlockTextDisappearCountdown());
+                    current_chest.addItem(current_ID, max_stack);
+                }
+                else
+                {
+                    Debug.Log("chest full");
                 }
             }
-        }
-        else
-        {
-            current_chest.transferItem();
+
+            if (!select_item_text.activeSelf)
+            {
+                select_item_text.SetActive(true);
+                select_item_text_disappear_timer = 5.0f;
+                StartCoroutine(selectBlockTextDisappearCountdown());
+            }
+            if (transfer_item_text != null)
+            {
+                Destroy(transfer_item_text);
+            }
         }
 
-        if (transfer_item_text != null)
-        {
-            Destroy(transfer_item_text);
-        }
+
     }
 
     public void transferAll()

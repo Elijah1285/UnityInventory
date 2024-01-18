@@ -82,7 +82,7 @@ public class Chest : MonoBehaviour
 
     public void transferItem()
     {
-        if (item_ids[selected_slot, 1] > 0 && InventorySystem.instance.checkIfFreeSpace(item_ids[selected_slot, 0]))
+        if (item_ids[selected_slot, 1] > 0)
         {
             int current_ID = item_ids[selected_slot, 0];
             item_ids[selected_slot, 1]--;
@@ -239,7 +239,7 @@ public class Chest : MonoBehaviour
         slot_selector.position = chest_slots.GetChild(selected_slot).position;
     }
 
-    bool checkIfFreeSpace(int item_id, int max_stack)
+    public bool checkIfFreeSpace(int item_id, int max_stack)
     {
         bool free_space = false;
 
