@@ -82,11 +82,9 @@ public class Chest : MonoBehaviour
 
     public void transferItem()
     {
-        int current_ID = item_ids[selected_slot, 0];
-
-
-        if (item_ids[selected_slot, 1] > 0)
+        if (item_ids[selected_slot, 1] > 0 && InventorySystem.instance.checkIfFreeSpace(item_ids[selected_slot, 0]))
         {
+            int current_ID = item_ids[selected_slot, 0];
             item_ids[selected_slot, 1]--;
             GameObject item_count = chest_numbers.GetChild(selected_slot).gameObject;
             item_count.GetComponent<TMP_Text>().text = item_ids[selected_slot, 1].ToString();
@@ -239,5 +237,26 @@ public class Chest : MonoBehaviour
     void updateSlotSelector()
     {
         slot_selector.position = chest_slots.GetChild(selected_slot).position;
+    }
+
+    bool checkIfFreeSpace(int item_id, int max_stack)
+    {
+        bool free_space = false;
+
+        for (int i = 0; i < item_ids.Length; i++)
+        {
+            if (item_ids[i, 0] == item_id && item_ids[i, 1] < max_stack)
+            {
+                free_space = true;
+                break;
+            }
+            else if (item_ids[i, 0] == 0)
+            {
+                free_space = true;
+                break;
+            }
+        }
+
+        return free_space;
     }
 }
