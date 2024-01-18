@@ -239,7 +239,11 @@ public class InventorySystem : MonoBehaviour
                         Instantiate(sword, item_placement_pos, Quaternion.identity);
                         break;
                 }
-            }   
+            }
+            else
+            {
+                selectItemWarning();
+            }
         }
         else
         {
@@ -256,30 +260,30 @@ public class InventorySystem : MonoBehaviour
             }
             else
             {
-                int max_stack = calculateMaxStack(current_ID);
-
-                if (current_chest.checkIfFreeSpace(current_ID, max_stack))
+                if (item_ids[selected_slot, 1] > 0)
                 {
-                    removeItem();
+                    int max_stack = calculateMaxStack(current_ID);
+                    if (current_chest.checkIfFreeSpace(current_ID, max_stack))
+                    {
+                        removeItem();
 
-                    current_chest.addItem(current_ID, max_stack);
+                        current_chest.addItem(current_ID, max_stack);
+                    }
+                    else
+                    {
+                        Debug.Log("chest full");
+                    }
                 }
                 else
                 {
-                    Debug.Log("chest full");
+                    selectItemWarning();
                 }
             }
+        }
 
-            if (!select_item_text.activeSelf)
-            {
-                select_item_text.SetActive(true);
-                select_item_text_disappear_timer = 5.0f;
-                StartCoroutine(selectBlockTextDisappearCountdown());
-            }
-            if (transfer_item_text != null)
-            {
-                Destroy(transfer_item_text);
-            }
+        if (transfer_item_text != null)
+        {
+            Destroy(transfer_item_text);
         }
 
         updateInventory();
@@ -548,6 +552,16 @@ public class InventorySystem : MonoBehaviour
         }
 
         return max_stack;
+    }
+
+    public void selectItemWarning()
+    {
+        if (!select_item_text.activeSelf)
+        {
+            select_item_text.SetActive(true);
+            select_item_text_disappear_timer = 5.0f;
+            StartCoroutine(selectBlockTextDisappearCountdown());
+        }
     }
 
     IEnumerator selectBlockTextDisappearCountdown()

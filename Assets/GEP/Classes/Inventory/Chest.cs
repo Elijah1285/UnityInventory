@@ -104,6 +104,10 @@ public class Chest : MonoBehaviour
 
             InventorySystem.instance.addItem(current_ID);
         }
+        else
+        {
+            InventorySystem.instance.selectItemWarning();
+        }
     }
 
     public void transferAll()
