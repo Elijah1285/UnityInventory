@@ -43,7 +43,7 @@ public class Chest : MonoBehaviour
         chest_panel.gameObject.SetActive(false);
     }
 
-    public bool addItem(int item_id, int max_stack)
+    public void addItem(int item_id, int max_stack)
     {
         for (int i = 0; i < item_ids.GetLength(0); i++)
         {
@@ -59,7 +59,7 @@ public class Chest : MonoBehaviour
                 }
 
                 item_count.GetComponent<TMP_Text>().text = item_ids[i, 1].ToString();
-                return true;
+                return;
             }
         }
 
@@ -73,11 +73,7 @@ public class Chest : MonoBehaviour
             updateChest();
 
             updateNextEmptySlot();
-
-            return true;
         }
-
-        return false;
     }
 
     public void transferItem()
