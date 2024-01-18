@@ -85,24 +85,32 @@ public class Chest : MonoBehaviour
         if (item_ids[selected_slot, 1] > 0)
         {
             int current_ID = item_ids[selected_slot, 0];
-            item_ids[selected_slot, 1]--;
-            GameObject item_count = chest_numbers.GetChild(selected_slot).gameObject;
-            item_count.GetComponent<TMP_Text>().text = item_ids[selected_slot, 1].ToString();
 
-            if (item_ids[selected_slot, 1] == 1)
+            if (InventorySystem.instance.checkIfFreeSpace(current_ID))
             {
-                item_count.SetActive(false);
+                item_ids[selected_slot, 1]--;
+                GameObject item_count = chest_numbers.GetChild(selected_slot).gameObject;
+                item_count.GetComponent<TMP_Text>().text = item_ids[selected_slot, 1].ToString();
+
+                if (item_ids[selected_slot, 1] == 1)
+                {
+                    item_count.SetActive(false);
+                }
+                else if (item_ids[selected_slot, 1] <= 0)
+                {
+                    item_ids[selected_slot, 0] = 0;
+                }
+
+
+                updateChest();
+                updateNextEmptySlot();
+
+                InventorySystem.instance.addItem(current_ID);
             }
-            else if (item_ids[selected_slot, 1] <= 0)
+            else
             {
-                item_ids[selected_slot, 0] = 0;
+                Debug.Log("inventory full");
             }
-
-
-            updateChest();
-            updateNextEmptySlot();
-
-            InventorySystem.instance.addItem(current_ID);
         }
         else
         {
@@ -114,9 +122,16 @@ public class Chest : MonoBehaviour
     {
         int item_count = item_ids[selected_slot, 1];
 
-        for (int i = 0; i < item_count; i++)
+        if (item_count > 0)
         {
-            transferItem();
+            for (int i = 0; i < item_count; i++)
+            {
+                transferItem();
+            }
+        }
+        else
+        {
+            InventorySystem.instance.selectItemWarning();
         }
 
         updateChest();

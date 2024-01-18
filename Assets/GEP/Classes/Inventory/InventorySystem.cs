@@ -249,14 +249,7 @@ public class InventorySystem : MonoBehaviour
         {
             if (in_chest)
             {
-                if (checkIfFreeSpace(current_ID))
-                {
-                    current_chest.transferItem();
-                }
-                else
-                {
-                    Debug.Log("inventory full");
-                }
+                current_chest.transferItem();
             }
             else
             {
@@ -503,7 +496,7 @@ public class InventorySystem : MonoBehaviour
         }
     }
 
-    bool checkIfFreeSpace(int item_id)
+    public bool checkIfFreeSpace(int item_id)
     {
         bool free_space = false;
         int max_stack = calculateMaxStack(item_id);
