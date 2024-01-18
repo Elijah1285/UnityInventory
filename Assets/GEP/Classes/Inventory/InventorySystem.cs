@@ -472,24 +472,24 @@ public class InventorySystem : MonoBehaviour
 
     bool checkIfFreeSpace(int item_id)
     {
-        bool free_space = 0;
+        bool free_space = false;
         int max_stack = calculateMaxStack(item_id);
 
         for (int i = 0; i < item_ids.Length; i++)
         {
-            if (item_ids[i, 0] = item_id)
+            if (item_ids[i, 0] == item_id && item_ids[i, 1] < max_stack)
             {
-                if (item_ids[i, 1] < max_stack)
-                {
-                    free_space = true;
-                    break;
-                }
+                free_space = true;
+                break;
             }
-            else
+            else if (item_ids[i, 0] == 0)
             {
-
+                free_space = true;
+                break;
             }
         }
+
+        return free_space;
     }
 
     int calculateMaxStack(int item_id)
